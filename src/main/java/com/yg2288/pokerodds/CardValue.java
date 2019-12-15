@@ -1,4 +1,4 @@
-package pokerodds;
+package java.com.yg2288.pokerodds;
 
 public enum CardValue {
     TWO(2),
