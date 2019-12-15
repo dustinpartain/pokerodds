@@ -1,4 +1,4 @@
-package java.com.yg2288.pokerodds;
+package com.yg2288.pokerodds;
 
 import org.junit.Assert;
 import org.junit.Test;

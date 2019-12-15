@@ -1,4 +1,4 @@
-package java.com.yg2288.pokerodds;
+package com.yg2288.pokerodds;
 
 public enum Suit {
     CLUBS,
