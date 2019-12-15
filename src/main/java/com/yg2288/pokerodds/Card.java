@@ -21,6 +21,24 @@ public class Card {
             case FOUR:
                 faceValue = "4";
                 break;
+            case FIVE:
+                faceValue = "5";
+                break;
+            case SIX:
+                faceValue = "6";
+                break;
+            case SEVEN:
+                faceValue = "7";
+                break;
+            case EIGHT:
+                faceValue = "8";
+                break;
+            case NINE:
+                faceValue = "9";
+                break;
+            case TEN:
+                faceValue = "10";
+                break;
             default:
                 faceValue = value.toString();
         }
