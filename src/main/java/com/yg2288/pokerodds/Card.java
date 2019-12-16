@@ -1,6 +1,6 @@
 package com.yg2288.pokerodds;
 
-public class Card {
+public class Card implements Comparable<Card>{
     Suit suit;
     CardValue value;
 
@@ -43,6 +43,10 @@ public class Card {
                 faceValue = value.toString();
         }
         return faceValue + " of " + suit.toString();
+    }
+
+    public int compareTo(Card anotherCard) {
+        return value.compareTo(anotherCard.value);
     }
 
 }
