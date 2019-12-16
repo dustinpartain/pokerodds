@@ -1,11 +1,27 @@
 package com.yg2288.pokerodds;
 
 public class Card implements Comparable<Card>{
-    Suit suit;
-    CardValue value;
+    private Suit suit;
+    private CardValue value;
 
     public Card(Suit suit, CardValue value) {
         this.suit = suit;
+        this.value = value;
+    }
+
+    public Suit getSuit() {
+        return suit;
+    }
+
+    public void setSuit(Suit suit) {
+        this.suit = suit;
+    }
+
+    public CardValue getValue() {
+        return value;
+    }
+
+    public void setValue(CardValue value) {
         this.value = value;
     }
 
