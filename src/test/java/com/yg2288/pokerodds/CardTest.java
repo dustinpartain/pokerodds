@@ -51,4 +51,11 @@ public class CardTest {
         Card card1 = new Card(Suit.CLUBS, CardValue.ACE);
         Assert.assertTrue(card1.getSuit() == Suit.CLUBS);
     }
+
+    @Test
+    public void cardTest12() {
+        Card card1 = new Card(Suit.CLUBS, CardValue.ACE);
+        Card card2 = new Card(Suit.CLUBS, CardValue.TWO);
+        Assert.assertTrue(card1.compareTo(card2) == 12);
+    }
 }
