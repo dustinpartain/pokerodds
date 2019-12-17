@@ -58,4 +58,11 @@ public class CardTest {
         Card card2 = new Card(Card.Suit.CLUBS, Card.Rank.TWO);
         Assert.assertTrue(card1.compareTo(card2) == 12);
     }
+
+    @Test
+    public void cardTest13() {
+        Card card1 = new Card(Card.Suit.CLUBS, Card.Rank.ACE);
+        Card card2 = new Card(Card.Suit.SPADES, Card.Rank.ACE);
+        Assert.assertTrue(card1.compareTo(card2) == -1);
+    }
 }

@@ -75,7 +75,11 @@ public class Card implements Comparable<Card>{
     }
 
     public int compareTo(Card anotherCard) {
-        return rank.compareTo(anotherCard.rank);
+        if (rank.compareTo(anotherCard.rank) == 0) {
+            return suit.compareTo(anotherCard.suit);
+        } else {
+            return rank.compareTo(anotherCard.rank);
+        }
     }
 
 }
