@@ -2,11 +2,11 @@ package com.yg2288.pokerodds;
 
 public class Card implements Comparable<Card>{
     private Suit suit;
-    private CardValue value;
+    private Rank rank;
 
-    public Card(Suit suit, CardValue value) {
+    public Card(Suit suit, Rank rank) {
         this.suit = suit;
-        this.value = value;
+        this.rank = rank;
     }
 
     public Suit getSuit() {
@@ -17,17 +17,17 @@ public class Card implements Comparable<Card>{
         this.suit = suit;
     }
 
-    public CardValue getValue() {
-        return value;
+    public Rank getRank() {
+        return rank;
     }
 
-    public void setValue(CardValue value) {
-        this.value = value;
+    public void setRank(Rank rank) {
+        this.rank = rank;
     }
 
     public String toString() {
         String faceValue;
-        switch (value) {
+        switch (rank) {
             case TWO:
                 faceValue = "2";
                 break;
@@ -56,13 +56,13 @@ public class Card implements Comparable<Card>{
                 faceValue = "10";
                 break;
             default:
-                faceValue = value.toString();
+                faceValue = rank.toString();
         }
         return faceValue + " of " + suit.toString();
     }
 
     public int compareTo(Card anotherCard) {
-        return value.compareTo(anotherCard.value);
+        return rank.compareTo(anotherCard.rank);
     }
 
 }

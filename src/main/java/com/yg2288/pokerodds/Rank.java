@@ -1,6 +1,6 @@
 package com.yg2288.pokerodds;
 
-public enum CardValue {
+public enum Rank {
     TWO(2),
     THREE(3),
     FOUR(4),
@@ -15,14 +15,14 @@ public enum CardValue {
     KING(13),
     ACE(14);
 
-    private int cardValue;
+    private int rank;
 
-    private CardValue(int value) {
-        cardValue = value;
+    private Rank(int rank) {
+        this.rank = rank;
     }
 
-    public int getValue() {
-        return cardValue;
+    public int getRank() {
+        return rank;
     }
 
 }
