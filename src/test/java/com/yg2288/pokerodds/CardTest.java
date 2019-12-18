@@ -65,4 +65,18 @@ public class CardTest {
         Card card2 = new Card(Card.Suit.SPADES, Card.Rank.ACE);
         Assert.assertTrue(card1.compareTo(card2) == -1);
     }
+
+    @Test
+    public void cardTest14() {
+        Card card1 = new Card(Card.Suit.SPADES, Card.Rank.ACE);
+        Card card2 = new Card(Card.Suit.SPADES, Card.Rank.ACE);
+        Assert.assertTrue(card1.equals(card2));
+    }
+
+    @Test
+    public void cardTest15() {
+        Card card1 = new Card(Card.Suit.SPADES, Card.Rank.ACE);
+        Card card2 = new Card(Card.Suit.DIAMONDS, Card.Rank.ACE);
+        Assert.assertTrue(!card1.equals(card2));
+    }
 }
