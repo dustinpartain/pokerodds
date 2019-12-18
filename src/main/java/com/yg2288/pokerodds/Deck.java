@@ -1,7 +1,6 @@
 package com.yg2288.pokerodds;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -31,6 +30,29 @@ public class Deck {
     public void reset() {
         cards.clear();
         fillDeck();
+    }
+
+    public boolean inDeck(Card card) {
+        for (Card c : cards) {
+            if (c.equals(card)) return true;
+        }
+        return false;
+    }
+
+    public boolean addCard(Card card) {
+        if (inDeck(card)) return false;
+        cards.add(card);
+        return true;
+    }
+
+    public boolean removeCard(Card card) {
+        for (Card c : cards) {
+            if (c.equals(card)) {
+                cards.remove(c);
+                return true;
+            }
+        }
+        return false;
     }
 
     public String toString() {
