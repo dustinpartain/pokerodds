@@ -86,6 +86,14 @@ public class Card implements Comparable<Card>{
         return suit.equals(c.suit) && rank.equals(c.rank);
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31*result + rank.getValue();
+        result = 31*result + suit.ordinal();
+        return result;
+    }
+
     public int compareTo(Card anotherCard) {
         if (rank.compareTo(anotherCard.rank) == 0) {
             return suit.compareTo(anotherCard.suit);
