@@ -74,6 +74,7 @@ public class Card implements Comparable<Card>{
         return faceValue + " of " + suit.toString();
     }
 
+    @Override
     public boolean equals(Object o) {
         if (o == this) {
             return true;
