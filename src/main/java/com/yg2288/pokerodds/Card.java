@@ -74,8 +74,15 @@ public class Card implements Comparable<Card>{
         return faceValue + " of " + suit.toString();
     }
 
-    public boolean equals(Card anotherCard) {
-        return suit.equals(anotherCard.suit) && rank.equals(anotherCard.rank);
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof Card)) {
+            return false;
+        }
+        Card c = (Card)o;
+        return suit.equals(c.suit) && rank.equals(c.rank);
     }
 
     public int compareTo(Card anotherCard) {
