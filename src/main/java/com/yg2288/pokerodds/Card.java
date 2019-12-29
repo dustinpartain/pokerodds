@@ -59,6 +59,7 @@ public class Card implements Comparable<Card>{
         this.rank = rank;
     }
 
+    @Override
     public String toString() {
         String faceValue;
         switch (rank) {
