@@ -5,7 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 public class HandTest {
@@ -44,5 +46,13 @@ public class HandTest {
         Assert.assertTrue(hand.addCard(randCard()));
         Assert.assertTrue(hand.addCard(randCard()));
         Assert.assertTrue(!hand.addCard(randCard()));
+    }
+
+    @Test
+    public void handTest5() {
+        List<Card> card = List.of(new Card(Card.Suit.DIAMONDS, Card.Rank.EIGHT), new Card(Card.Suit.CLUBS, Card.Rank.FIVE));
+        StartingHand hand = new StartingHand(card);
+        Assert.assertEquals(hand.highCard(), card.get(0));
+        Assert.assertEquals(hand.lowCard(), card.get(1));
     }
 }

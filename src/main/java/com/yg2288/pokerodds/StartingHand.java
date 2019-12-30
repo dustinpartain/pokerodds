@@ -1,5 +1,6 @@
 package com.yg2288.pokerodds;
 
+import java.util.Collections;
 import java.util.List;
 
 public class StartingHand extends Hand {
@@ -17,5 +18,13 @@ public class StartingHand extends Hand {
             return false;
         cards.add(card);
         return true;
+    }
+
+    public Card highCard() {
+        return Collections.max(cards);
+    }
+
+    public Card lowCard() {
+        return Collections.min(cards);
     }
 }
