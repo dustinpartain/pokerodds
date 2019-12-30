@@ -4,6 +4,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class HighCard extends PlayingHand {
+    public final HandEnum type = HandEnum.HIGHCARD;
+
     public HighCard(List<Card> cards) {
         super(cards);
     }
