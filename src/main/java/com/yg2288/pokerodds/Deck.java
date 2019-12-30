@@ -11,10 +11,24 @@ public class Deck {
         fillDeck();
     }
 
+    public Deck(List<Card> excludeCards) {
+        fillDeck(excludeCards);
+    }
+
     private void fillDeck() {
         for (Card.Suit suit : Card.Suit.values()) {
             for (Card.Rank rank : Card.Rank.values()) {
                 cards.add(new Card(suit, rank));
+            }
+        }
+    }
+
+    private void fillDeck(List<Card> excludeCards) {
+        for (Card.Suit suit : Card.Suit.values()) {
+            for (Card.Rank rank : Card.Rank.values()) {
+                Card c = new Card(suit, rank);
+                if (!(excludeCards.contains(c)))
+                    cards.add(c);
             }
         }
     }
