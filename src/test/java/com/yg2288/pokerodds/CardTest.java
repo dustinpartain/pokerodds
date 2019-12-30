@@ -79,4 +79,11 @@ public class CardTest {
         Card card2 = new Card(Card.Suit.DIAMONDS, Card.Rank.ACE);
         Assert.assertTrue(!card1.equals(card2));
     }
+
+    @Test
+    public void cardTest16() {
+        Card card1 = new Card(Card.Suit.SPADES, Card.Rank.ACE);
+        Card card2 = card1.clone();
+        Assert.assertTrue(card1.equals(card2));
+    }
 }

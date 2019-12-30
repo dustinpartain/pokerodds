@@ -103,4 +103,7 @@ public class Card implements Comparable<Card>{
         }
     }
 
+    public Card clone() {
+        return new Card(this.getSuit(), this.getRank());
+    }
 }
