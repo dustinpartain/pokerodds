@@ -24,4 +24,19 @@ public class DeckTest {
         Assert.assertTrue(!deck.inDeck(excluded1));
         Assert.assertTrue(!deck.inDeck(excluded2));
     }
+
+    @Test
+    public void deckTest3() {
+        Deck deck = new Deck();
+        deck.clear();
+        Assert.assertEquals(deck.size(), 0);
+    }
+
+    @Test
+    public void deckTest4() {
+        Deck deck = new Deck();
+        Card card = deck.draw();
+        Assert.assertTrue(!deck.inDeck(card));
+    }
+
 }

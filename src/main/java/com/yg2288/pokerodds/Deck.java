@@ -46,6 +46,17 @@ public class Deck {
         fillDeck();
     }
 
+    public void clear() {
+        cards.clear();
+    }
+
+    public Card draw() {
+        if (cards.size() > 0) {
+            return cards.remove(cards.size() - 1);
+        }
+        return null;
+    }
+
     public boolean inDeck(Card card) {
         for (Card c : cards) {
             if (c.equals(card)) return true;
