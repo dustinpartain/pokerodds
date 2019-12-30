@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Hand {
-    private List<Card> cards = new ArrayList<>();
+    protected List<Card> cards = new ArrayList<>();
 
     public Hand() { }
 
@@ -28,8 +28,9 @@ public class Hand {
         return cards.size();
     }
 
-    public void addCard(Card c) {
+    public boolean addCard(Card c) {
         cards.add(c);
+        return true;
     }
 
     public Card getCard(int i) {
