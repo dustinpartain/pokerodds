@@ -27,4 +27,12 @@ public class StartingHand extends Hand {
     public Card lowCard() {
         return Collections.min(cards);
     }
+
+    public boolean isPocketPair() {
+        if (this.size() < 2)
+            return false;
+        if (cards.get(0).compareTo(cards.get(1)) == 0)
+            return true;
+        return false;
+    }
 }

@@ -1,8 +1,6 @@
 package com.yg2288.pokerodds;
 
 import static org.junit.Assert.*;
-
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -38,21 +36,5 @@ public class HandTest {
         Card card = new Card(Card.Suit.CLUBS, Card.Rank.ACE);
         hand.addCard(card);
         assertEquals(hand.getCard(0), card);
-    }
-
-    @Test
-    public void handTest4() {
-        StartingHand hand = new StartingHand();
-        Assert.assertTrue(hand.addCard(randCard()));
-        Assert.assertTrue(hand.addCard(randCard()));
-        Assert.assertTrue(!hand.addCard(randCard()));
-    }
-
-    @Test
-    public void handTest5() {
-        List<Card> card = List.of(new Card(Card.Suit.DIAMONDS, Card.Rank.EIGHT), new Card(Card.Suit.CLUBS, Card.Rank.FIVE));
-        StartingHand hand = new StartingHand(card);
-        Assert.assertEquals(hand.highCard(), card.get(0));
-        Assert.assertEquals(hand.lowCard(), card.get(1));
     }
 }
