@@ -8,6 +8,7 @@ public class HighCard extends PlayingHand {
 
     public HighCard(List<Card> cards) {
         super(cards);
+        this.cards.sort(Collections.reverseOrder());
     }
 
     public Card highCard() {

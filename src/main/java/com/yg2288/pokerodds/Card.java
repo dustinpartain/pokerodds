@@ -95,6 +95,7 @@ public class Card implements Comparable<Card>, Cloneable {
         return result;
     }
 
+    @Override
     public int compareTo(Card anotherCard) {
         if (rank.compareTo(anotherCard.rank) == 0) {
             return suit.compareTo(anotherCard.suit);
