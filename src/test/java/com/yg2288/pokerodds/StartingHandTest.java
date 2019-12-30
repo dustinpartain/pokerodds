@@ -56,4 +56,20 @@ public class StartingHandTest {
         hand.addCard(new Card(Card.Suit.CLUBS, Card.Rank.EIGHT));
         assertTrue(hand.isPocketPair());
     }
+
+    @Test
+    public void startingHandTest5() {
+        StartingHand hand = new StartingHand();
+        hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.EIGHT));
+        hand.addCard(new Card(Card.Suit.CLUBS, Card.Rank.EIGHT));
+        assertTrue(hand.isOffSuit());
+    }
+
+    @Test
+    public void startingHandTest6() {
+        StartingHand hand = new StartingHand();
+        hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.EIGHT));
+        hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.SEVEN));
+        assertTrue(!hand.isOffSuit());
+    }
 }

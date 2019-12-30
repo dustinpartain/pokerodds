@@ -35,4 +35,12 @@ public class StartingHand extends Hand {
             return true;
         return false;
     }
+
+    public boolean isOffSuit() {
+        if (this.size() < 2)
+            return false;
+        if (cards.get(0).getSuit() == cards.get(1).getSuit())
+            return false;
+        return true;
+    }
 }
