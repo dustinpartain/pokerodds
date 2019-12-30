@@ -57,6 +57,14 @@ public class Deck {
         return null;
     }
 
+    public List<Card> draw(int n) {
+        List<Card> l = new ArrayList<>();
+        while (n-- > 0 && cards.size() > 0) {
+            l.add(this.draw());
+        }
+        return l;
+    }
+
     public boolean inDeck(Card card) {
         for (Card c : cards) {
             if (c.equals(card)) return true;

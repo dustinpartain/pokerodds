@@ -39,4 +39,17 @@ public class DeckTest {
         Assert.assertTrue(!deck.inDeck(card));
     }
 
+    @Test
+    public void deckTest5() {
+        Deck deck = new Deck();
+        List<Card> l = deck.draw(10);
+        Assert.assertEquals(l.size(), 10);
+    }
+
+    @Test
+    public void deckTest6() {
+        Deck deck = new Deck();
+        List<Card> l = deck.draw(100);
+        Assert.assertEquals(l.size(), 52);
+    }
 }
