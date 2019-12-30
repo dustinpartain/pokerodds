@@ -1,6 +1,6 @@
 package com.yg2288.pokerodds;
 
-public class Card implements Comparable<Card>{
+public class Card implements Comparable<Card>, Cloneable {
     public enum Suit {
         CLUBS,
         SPADES,
@@ -103,6 +103,7 @@ public class Card implements Comparable<Card>{
         }
     }
 
+    @Override
     public Card clone() {
         return new Card(this.getSuit(), this.getRank());
     }
