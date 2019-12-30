@@ -26,7 +26,7 @@ public class StartingHandTest {
     }
 
     @Test
-    public void handTest1() {
+    public void startingHandTest1() {
         StartingHand hand = new StartingHand();
         assertTrue(hand.addCard(randCard()));
         assertTrue(hand.addCard(randCard()));
@@ -34,10 +34,26 @@ public class StartingHandTest {
     }
 
     @Test
-    public void handTest2() {
+    public void startingHandTest2() {
         List<Card> card = List.of(new Card(Card.Suit.DIAMONDS, Card.Rank.EIGHT), new Card(Card.Suit.CLUBS, Card.Rank.FIVE));
         StartingHand hand = new StartingHand(card);
         assertEquals(hand.highCard(), card.get(0));
         assertEquals(hand.lowCard(), card.get(1));
+    }
+
+    @Test
+    public void startingHandTest3() {
+        StartingHand hand = new StartingHand();
+        hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.EIGHT));
+        hand.addCard(new Card(Card.Suit.CLUBS, Card.Rank.FIVE));
+        assertTrue(!hand.isPocketPair());
+    }
+
+    @Test
+    public void startingHandTest4() {
+        StartingHand hand = new StartingHand();
+        hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.EIGHT));
+        hand.addCard(new Card(Card.Suit.CLUBS, Card.Rank.EIGHT));
+        assertTrue(hand.isPocketPair());
     }
 }

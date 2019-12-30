@@ -31,7 +31,7 @@ public class StartingHand extends Hand {
     public boolean isPocketPair() {
         if (this.size() < 2)
             return false;
-        if (cards.get(0).compareTo(cards.get(1)) == 0)
+        if (cards.get(0).getRank() == cards.get(1).getRank())
             return true;
         return false;
     }
