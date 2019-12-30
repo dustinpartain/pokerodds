@@ -10,7 +10,8 @@ public class Hand {
     public Hand() { }
 
     public Hand(List<Card> cards) {
-        this.cards = cards;
+        for (Card c : cards)
+            this.cards.add(c.clone());
     }
 
     @Override
