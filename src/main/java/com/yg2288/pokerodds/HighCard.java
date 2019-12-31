@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class HighCard extends PlayingHand implements Comparable<HighCard> {
-    public final HandEnum type = HandEnum.HIGHCARD;
+    public static final HandEnum type = HandEnum.HIGHCARD;
 
     public HighCard(List<Card> cards) {
         super(cards);
