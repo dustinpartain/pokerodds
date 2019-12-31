@@ -33,4 +33,19 @@ public class OnePairTest {
         OnePair hand = getHand1();
         assertEquals(hand.getPair().get(0).getRank(), hand.getPair().get(1).getRank());
     }
+
+    @Test
+    public void onePairTest2() {
+        OnePair hand1 = getHand1();
+        OnePair hand2 = getHand1();
+        assertEquals(hand1.compareTo(hand2), 0);
+    }
+
+    @Test
+    public void onePairTest3() {
+        OnePair hand1 = getHand1();
+        OnePair hand2 = getHand2();
+        assertTrue(hand1.compareTo(hand2) > 0);
+        assertTrue(hand2.compareTo(hand1) < 0);
+    }
 }
