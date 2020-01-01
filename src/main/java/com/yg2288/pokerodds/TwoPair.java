@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class TwoPair extends PlayingHand {
+public class TwoPair extends PlayingHand implements Comparable<TwoPair> {
     public static final HandEnum type = HandEnum.TWOPAIR;
 
     private List<Card> pair1;
@@ -41,5 +41,16 @@ public class TwoPair extends PlayingHand {
         if (pair1.get(0).compareTo(pair2.get(0)) < 0)
             return pair1;
         return pair2;
+    }
+
+    @Override
+    public int compareTo(TwoPair twoPair) {
+        int cmp = this.getHighPair().get(0).compareTo(twoPair.getHighPair().get(0));
+        if (cmp != 0)
+            return cmp;
+        cmp = this.getLowPair().get(0).compareTo(twoPair.getLowPair().get(0));
+        if (cmp != 0)
+            return cmp;
+        return this.kicker.compareTo(twoPair.kicker);
     }
 }

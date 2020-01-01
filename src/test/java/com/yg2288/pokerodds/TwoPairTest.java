@@ -52,4 +52,25 @@ public class TwoPairTest {
         TwoPair hand = getHand2();
         assertEquals(hand.getLowPair().get(0).getRank(), Rank.TWO);
     }
+
+    @Test
+    public void twoPairTest3() {
+        TwoPair hand1 = getHand1();
+        TwoPair hand2 = getHand2();
+        assertTrue(hand1.compareTo(hand2) > 0);
+    }
+
+    @Test
+    public void twoPairTest4() {
+        TwoPair hand1 = getHand1();
+        TwoPair hand2 = getHand3();
+        assertTrue(hand1.compareTo(hand2) < 0);
+    }
+
+    @Test
+    public void twoPairTest5() {
+        TwoPair hand1 = getHand1();
+        TwoPair hand2 = getHand1();
+        assertEquals(hand1.compareTo(hand2), 0);
+    }
 }
