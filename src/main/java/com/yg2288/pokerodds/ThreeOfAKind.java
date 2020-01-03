@@ -9,7 +9,7 @@ public class ThreeOfAKind extends PlayingHand {
     protected boolean isThree(List<Card> three) {
         if (three.size() != 3)
             return false;
-        if (three.get(0).getRank() != three.get(1).getRank() &&
+        if (three.get(0).getRank() != three.get(1).getRank() ||
             three.get(1).getRank() != three.get(2).getRank())
             return false;
         return true;
