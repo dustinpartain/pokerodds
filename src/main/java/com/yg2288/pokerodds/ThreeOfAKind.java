@@ -24,7 +24,9 @@ public class ThreeOfAKind extends PlayingHand {
             throw new IllegalArgumentException("Hand must be 5 cards. ");
         for (Card c : rest)
             cards.add(c.clone());
-        Collections.sort(rest);
+        this.triplet = cards.subList(0, 3);
+        this.rest = cards.subList(3,5);
+        Collections.sort(this.rest);
     }
 
     public List<Card> getTriplet() {

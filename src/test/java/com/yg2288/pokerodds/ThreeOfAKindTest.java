@@ -52,4 +52,10 @@ public class ThreeOfAKindTest {
         rest.add(new Card(Suit.HEARTS, Rank.SIX));
         ThreeOfAKind hand = new ThreeOfAKind(triplet, rest);
     }
+
+    @Test
+    public void threeKindTest2() {
+        ThreeOfAKind hand = getHand1();
+        assertEquals(hand.getTripletRank(), Rank.ACE);
+    }
 }
