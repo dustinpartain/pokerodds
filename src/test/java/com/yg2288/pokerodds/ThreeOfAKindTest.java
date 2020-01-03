@@ -58,4 +58,25 @@ public class ThreeOfAKindTest {
         ThreeOfAKind hand = getHand1();
         assertEquals(hand.getTripletRank(), Rank.ACE);
     }
+
+    @Test
+    public void threeKindTest3() {
+        ThreeOfAKind hand1 = getHand1();
+        ThreeOfAKind hand2 = getHand1();
+        assertEquals(hand1.compareTo(hand2), 0);
+    }
+
+    @Test
+    public void threeKindTest4() {
+        ThreeOfAKind hand1 = getHand1();
+        ThreeOfAKind hand2 = getHand2();
+        assertTrue(hand1.compareTo(hand2) > 0);
+    }
+
+    @Test
+    public void threeKindTest5() {
+        ThreeOfAKind hand1 = getHand1();
+        ThreeOfAKind hand2 = getHand3();
+        assertTrue(hand1.compareTo(hand2) < 0);
+    }
 }

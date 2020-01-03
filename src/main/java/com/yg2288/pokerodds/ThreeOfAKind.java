@@ -3,7 +3,7 @@ package com.yg2288.pokerodds;
 import java.util.Collections;
 import java.util.List;
 
-public class ThreeOfAKind extends PlayingHand {
+public class ThreeOfAKind extends PlayingHand implements Comparable<ThreeOfAKind> {
     private List<Card> triplet;
     private List<Card> rest;
 
@@ -35,5 +35,16 @@ public class ThreeOfAKind extends PlayingHand {
 
     protected Card.Rank getTripletRank() {
         return this.triplet.get(0).getRank();
+    }
+
+    @Override
+    public int compareTo(ThreeOfAKind threeOfAKind) {
+        if (this.getTripletRank() != threeOfAKind.getTripletRank())
+            return this.getTripletRank().compareTo(threeOfAKind.getTripletRank());
+        for (int i=0; i<2; i++) {
+            if (this.rest.get(i).getRank() != threeOfAKind.rest.get(i).getRank())
+                return this.rest.get(i).getRank().compareTo(threeOfAKind.rest.get(i).getRank());
+        }
+        return 0;
     }
 }
