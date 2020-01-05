@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Straight extends PlayingHand {
+public class Straight extends PlayingHand implements Comparable<Straight> {
     public static final HandEnum type = HandEnum.STRAIGHT;
 
     public static boolean isStraight(List<Card> cards) {
@@ -44,5 +44,10 @@ public class Straight extends PlayingHand {
             return cards.get(1);
         }
         return cards.get(0);
+    }
+
+    @Override
+    public int compareTo(Straight anotherStraight) {
+        return this.getHighCard().getRank().compareTo(anotherStraight.getHighCard().getRank());
     }
 }

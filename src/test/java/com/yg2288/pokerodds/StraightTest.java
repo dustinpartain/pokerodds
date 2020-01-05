@@ -66,4 +66,11 @@ public class StraightTest {
         cards.add(new Card(Suit.HEARTS, Rank.EIGHT));
         Straight hand = new Straight(cards);
     }
+
+    @Test
+    public void straightTest5() {
+        Straight hand1 = getHand1();
+        Straight hand2 = getHand2();
+        assertTrue(hand1.compareTo(hand2) < 0);
+    }
 }
