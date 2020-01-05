@@ -41,6 +41,17 @@ public class TwoPairTest {
         return new TwoPair(pair1, pair2, kicker);
     }
 
+    public TwoPair getHand4() {
+        List<Card> pair1 = new ArrayList<>();
+        List<Card> pair2 = new ArrayList<>();
+        Card kicker = new Card(Suit.SPADES, Rank.NINE);
+        pair1.add(new Card(Suit.DIAMONDS, Rank.ACE));
+        pair1.add(new Card(Suit.SPADES, Rank.ACE));
+        pair2.add(new Card(Suit.DIAMONDS, Rank.TWO));
+        pair2.add(new Card(Suit.SPADES, Rank.TWO));
+        return new TwoPair(pair1, pair2, kicker);
+    }
+
     @Test
     public void twoPairTest1() {
         TwoPair hand = getHand1();
@@ -71,6 +82,13 @@ public class TwoPairTest {
     public void twoPairTest5() {
         TwoPair hand1 = getHand1();
         TwoPair hand2 = getHand1();
-        assertEquals(hand1.compareTo(hand2), 0);
+        assertEquals(0, hand1.compareTo(hand2));
+    }
+
+    @Test
+    public void twoPairTest6() {
+        TwoPair hand1 = getHand3();
+        TwoPair hand2 = getHand4();
+        assertEquals(0, hand1.compareTo(hand2));
     }
 }

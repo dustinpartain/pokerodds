@@ -45,10 +45,10 @@ public class TwoPair extends PlayingHand implements Comparable<TwoPair> {
 
     @Override
     public int compareTo(TwoPair twoPair) {
-        int cmp = this.getHighPair().get(0).compareTo(twoPair.getHighPair().get(0));
+        int cmp = this.getHighPair().get(0).getRank().compareTo(twoPair.getHighPair().get(0).getRank());
         if (cmp != 0)
             return cmp;
-        cmp = this.getLowPair().get(0).compareTo(twoPair.getLowPair().get(0));
+        cmp = this.getLowPair().get(0).getRank().compareTo(twoPair.getLowPair().get(0).getRank());
         if (cmp != 0)
             return cmp;
         return this.kicker.compareTo(twoPair.kicker);
