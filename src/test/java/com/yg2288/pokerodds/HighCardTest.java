@@ -36,6 +36,16 @@ public class HighCardTest {
         return new HighCard(cards1);
     }
 
+    public HighCard getHighCard4() {
+        ArrayList<Card> cards1 = new ArrayList<>();
+        cards1.add(new Card(Card.Suit.DIAMONDS, Card.Rank.SIX));
+        cards1.add(new Card(Card.Suit.DIAMONDS, Card.Rank.FIVE));
+        cards1.add(new Card(Card.Suit.DIAMONDS, Card.Rank.THREE));
+        cards1.add(new Card(Card.Suit.DIAMONDS, Card.Rank.TWO));
+        cards1.add(new Card(Card.Suit.HEARTS, Card.Rank.ACE));
+        return new HighCard(cards1);
+    }
+
     @Test
     public void highCardTest1() {
         HighCard hand = getHighCard1();
@@ -53,6 +63,13 @@ public class HighCardTest {
     public void highCardTest3() {
         HighCard hand1 = getHighCard1();
         HighCard hand2 = getHighCard1();
+        assertEquals(hand1.compareTo(hand2), 0);
+    }
+
+    @Test
+    public void highCardTest4() {
+        HighCard hand1 = getHighCard3();
+        HighCard hand2 = getHighCard4();
         assertEquals(hand1.compareTo(hand2), 0);
     }
 }

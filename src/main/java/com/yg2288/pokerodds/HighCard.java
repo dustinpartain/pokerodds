@@ -26,7 +26,7 @@ public class HighCard extends PlayingHand implements Comparable<HighCard> {
         if (this.size() < highCard.size())
             return -1;
         for (int i=0; i<this.size(); i++) {
-            int cmp = this.getCard(i).compareTo(highCard.getCard(i));
+            int cmp = this.getCard(i).getRank().compareTo(highCard.getCard(i).getRank());
             if (cmp != 0)
                 return cmp;
         }
