@@ -38,7 +38,7 @@ public class OnePair extends PlayingHand implements Comparable<OnePair> {
         if (cmp != 0)
             return cmp;
         for (int i=0; i<rest.size(); i++) {
-            cmp = rest.get(i).compareTo(onePair.rest.get(i));
+            cmp = rest.get(i).getRank().compareTo(onePair.rest.get(i).getRank());
             if (cmp != 0)
                 return cmp;
         }

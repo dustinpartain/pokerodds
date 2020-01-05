@@ -28,6 +28,17 @@ public class OnePairTest {
         return new OnePair(pair, rest);
     }
 
+    public OnePair getHand3() {
+        ArrayList<Card> pair = new ArrayList<>();
+        pair.add(new Card(Card.Suit.HEARTS, Card.Rank.TWO));
+        pair.add(new Card(Card.Suit.DIAMONDS, Card.Rank.TWO));
+        ArrayList<Card> rest = new ArrayList<>();
+        rest.add(new Card(Card.Suit.CLUBS, Card.Rank.TWO));
+        rest.add(new Card(Card.Suit.CLUBS, Card.Rank.THREE));
+        rest.add(new Card(Card.Suit.CLUBS, Card.Rank.FOUR));
+        return new OnePair(pair, rest);
+    }
+
     @Test
     public void onePairTest1() {
         OnePair hand = getHand1();
@@ -47,5 +58,12 @@ public class OnePairTest {
         OnePair hand2 = getHand2();
         assertTrue(hand1.compareTo(hand2) > 0);
         assertTrue(hand2.compareTo(hand1) < 0);
+    }
+
+    @Test
+    public void onePairTest4() {
+        OnePair hand1 = getHand2();
+        OnePair hand2 = getHand3();
+        assertEquals(hand1.compareTo(hand2), 0);
     }
 }
