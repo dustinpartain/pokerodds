@@ -63,7 +63,7 @@ public class CardTest {
     public void cardTest13() {
         Card card1 = new Card(Card.Suit.CLUBS, Card.Rank.ACE);
         Card card2 = new Card(Card.Suit.SPADES, Card.Rank.ACE);
-        Assert.assertEquals(card1.compareTo(card2), 0);
+        Assert.assertTrue(card1.compareTo(card2) < 0);
     }
 
     @Test
