@@ -41,6 +41,17 @@ public class ThreeOfAKindTest {
         return new ThreeOfAKind(triplet, rest);
     }
 
+    protected ThreeOfAKind getHand4() {
+        List<Card> triplet = new ArrayList<>();
+        triplet.add(new Card(Suit.SPADES, Rank.ACE));
+        triplet.add(new Card(Suit.DIAMONDS, Rank.ACE));
+        triplet.add(new Card(Suit.HEARTS, Rank.ACE));
+        List<Card> rest = new ArrayList<>();
+        rest.add(new Card(Suit.CLUBS, Rank.KING));
+        rest.add(new Card(Suit.HEARTS, Rank.SIX));
+        return new ThreeOfAKind(triplet, rest);
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void threeKindTest1() {
         List<Card> triplet = new ArrayList<>();
@@ -78,5 +89,12 @@ public class ThreeOfAKindTest {
         ThreeOfAKind hand1 = getHand1();
         ThreeOfAKind hand2 = getHand3();
         assertTrue(hand1.compareTo(hand2) < 0);
+    }
+
+    @Test
+    public void threeKindTest6() {
+        ThreeOfAKind hand1 = getHand3();
+        ThreeOfAKind hand2 = getHand4();
+        assertEquals(0, hand1.compareTo(hand2));
     }
 }
