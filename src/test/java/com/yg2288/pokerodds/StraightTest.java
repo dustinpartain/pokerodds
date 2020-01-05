@@ -55,4 +55,15 @@ public class StraightTest {
         Straight hand1 = getHand3();
         assertEquals(Rank.EIGHT, hand1.getHighCard().getRank());
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void straightTest4() {
+        List<Card> cards = new ArrayList<>();
+        cards.add(new Card(Suit.CLUBS, Rank.THREE));
+        cards.add(new Card(Suit.DIAMONDS, Rank.FIVE));
+        cards.add(new Card(Suit.HEARTS, Rank.SIX));
+        cards.add(new Card(Suit.CLUBS, Rank.SEVEN));
+        cards.add(new Card(Suit.HEARTS, Rank.EIGHT));
+        Straight hand = new Straight(cards);
+    }
 }
