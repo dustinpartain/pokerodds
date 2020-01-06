@@ -61,4 +61,25 @@ public class FlushTest {
         Flush hand1 = getHand1();
         assertEquals(Rank.EIGHT, hand1.getCard(0).getRank());
     }
+
+    @Test
+    public void flushTest4() {
+        Flush hand1 = getHand1();
+        Flush hand2 = getHand2();
+        assertTrue(hand1.compareTo(hand2) < 0);
+    }
+
+    @Test
+    public void flushTest5() {
+        Flush hand1 = getHand2();
+        Flush hand2 = getHand3();
+        assertTrue(hand1.compareTo(hand2) < 0);
+    }
+
+    @Test
+    public void flushTest6() {
+        Flush hand1 = getHand1();
+        Flush hand2 = getHand1();
+        assertEquals(0, hand1.compareTo(hand2));
+    }
 }

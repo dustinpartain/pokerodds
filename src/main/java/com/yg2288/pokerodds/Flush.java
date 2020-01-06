@@ -3,7 +3,7 @@ package com.yg2288.pokerodds;
 import java.util.Collections;
 import java.util.List;
 
-public class Flush extends PlayingHand {
+public class Flush extends PlayingHand implements Comparable<Flush> {
     public static final HandEnum type = HandEnum.FLUSH;
     private Card.Suit flushSuit;
 
@@ -24,5 +24,14 @@ public class Flush extends PlayingHand {
 
     public Card.Suit getFlushSuit() {
         return flushSuit;
+    }
+
+    @Override
+    public int compareTo(Flush anotherFlush) {
+        for (int i=0; i<cards.size(); i++) {
+            if (cards.get(i).getRank() != anotherFlush.getCard(i).getRank())
+                return cards.get(i).getRank().compareTo(anotherFlush.getCard(i).getRank());
+        }
+        return 0;
     }
 }
