@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class FullHouse extends PlayingHand {
+public class FullHouse extends PlayingHand implements Comparable<FullHouse> {
     public static final HandEnum type = HandEnum.FULLHOUSE;
 
     private List<Card> triplet;
@@ -60,5 +60,14 @@ public class FullHouse extends PlayingHand {
 
     public Card.Rank getPairRank() {
         return this.pair.get(0).getRank();
+    }
+
+    @Override
+    public int compareTo(FullHouse anotherFullHouse) {
+        if (getTripletRank() != anotherFullHouse.getTripletRank())
+            return getTripletRank().compareTo(anotherFullHouse.getTripletRank());
+        if (getPairRank() != anotherFullHouse.getPairRank())
+            return getPairRank().compareTo(anotherFullHouse.getPairRank());
+        return 0;
     }
 }

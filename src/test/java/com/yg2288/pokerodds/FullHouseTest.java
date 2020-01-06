@@ -22,6 +22,16 @@ public class FullHouseTest {
         return new FullHouse(getCards1());
     }
 
+    protected FullHouse getHand2() {
+        List<Card> cards = new ArrayList<>();
+        cards.add(new Card(Suit.CLUBS, Rank.FOUR));
+        cards.add(new Card(Suit.DIAMONDS, Rank.FOUR));
+        cards.add(new Card(Suit.HEARTS, Rank.FOUR));
+        cards.add(new Card(Suit.SPADES, Rank.TWO));
+        cards.add(new Card(Suit.CLUBS, Rank.TWO));
+        return new FullHouse(cards);
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void fullHouseTest1() {
         List<Card> cards = getCards1();
@@ -34,5 +44,19 @@ public class FullHouseTest {
         FullHouse hand1 = getHand1();
         assertEquals(Rank.THREE, hand1.getTripletRank());
         assertEquals(Rank.TWO, hand1.getPairRank());
+    }
+
+    @Test
+    public void fullHouseTest3() {
+        FullHouse hand1 = getHand1();
+        FullHouse hand2 = getHand1();
+        assertEquals(0, hand1.compareTo(hand2));
+    }
+
+    @Test
+    public void fullHouseTest4() {
+        FullHouse hand1 = getHand1();
+        FullHouse hand2 = getHand2();
+        assertTrue(hand1.compareTo(hand2) < 0);
     }
 }
