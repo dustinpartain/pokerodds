@@ -5,7 +5,7 @@ import java.util.List;
 
 import static com.yg2288.pokerodds.Card.*;
 
-public class StraightFlush extends PlayingHand {
+public class StraightFlush extends PlayingHand implements Comparable<StraightFlush> {
     public static final HandEnum type = HandEnum.STRAIGHTFLUSH;
 
     public static boolean isStraightFlush(List<Card> cards) {
@@ -26,5 +26,10 @@ public class StraightFlush extends PlayingHand {
 
     public Rank getStraightFlushRank() {
         return highCard.getRank();
+    }
+
+    @Override
+    public int compareTo(StraightFlush anotherStraight) {
+        return this.highCard.compareTo(anotherStraight.highCard);
     }
 }
