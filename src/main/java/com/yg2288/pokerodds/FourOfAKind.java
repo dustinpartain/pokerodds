@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 
-public class FourOfAKind extends PlayingHand {
+public class FourOfAKind extends PlayingHand implements Comparable<FourOfAKind> {
     public static final HandEnum type = HandEnum.FOUROFAKIND;
 
     public static boolean isFourOfAKind(List<Card> cards) {
@@ -51,5 +51,12 @@ public class FourOfAKind extends PlayingHand {
 
     protected Rank getKickerRank() {
         return kicker.getRank();
+    }
+
+    @Override
+    public int compareTo(FourOfAKind anotherFour) {
+        if (this.getQuadRank() != anotherFour.getQuadRank())
+            return this.getQuadRank().compareTo(anotherFour.getQuadRank());
+        return this.kicker.compareTo(anotherFour.kicker);
     }
 }

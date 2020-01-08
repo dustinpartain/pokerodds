@@ -55,4 +55,26 @@ public class FourOfAKindTest {
         assertEquals(Rank.THREE, hand1.getQuadRank());
         assertEquals(Rank.TWO, hand1.getKickerRank());
     }
+
+    @Test
+    public void fourKindTest3() {
+        FourOfAKind hand1 = getHand1();
+        FourOfAKind hand2 = getHand2();
+        assertTrue(hand1.compareTo(hand2) < 0);
+        assertTrue(hand2.compareTo(hand1) > 0);
+    }
+
+    @Test
+    public void fourKindTest4() {
+        FourOfAKind hand1 = getHand2();
+        FourOfAKind hand2 = getHand3();
+        assertTrue(hand1.compareTo(hand2) > 0);
+    }
+
+    @Test
+    public void fourKindTest5() {
+        FourOfAKind hand1 = getHand1();
+        FourOfAKind hand2 = getHand1();
+        assertEquals(0, hand1.compareTo(hand2));
+    }
 }
