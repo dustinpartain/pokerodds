@@ -50,13 +50,11 @@ public class PlayingHandTest {
         assertTrue(!hand.addCard(randCard()));
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void playingHandTest2() {
         Deck deck = new Deck();
         deck.shuffle();
         PlayingHand hand = new PlayingHand(deck.draw(3));
-        assertTrue(hand.addCard(deck.draw()));
-        assertEquals(hand.size(), 4);
     }
 
     @Test

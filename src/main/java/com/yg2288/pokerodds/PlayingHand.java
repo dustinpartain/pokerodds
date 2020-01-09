@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlayingHand extends Hand {
+    public static boolean isValid(List<Card> cards) {
+        if (cards.size() != 5)
+            return false;
+        return true;
+    }
+
     protected static int[] getProfile(List<Card> cards) {
         int[] count = new int[13];
         for (Card c : cards)
@@ -25,15 +31,12 @@ public class PlayingHand extends Hand {
 
     public PlayingHand(List<Card> cards) {
         super(cards);
-        if (cards.size() > 5)
-            throw new IllegalArgumentException("Playing hand can not be larger than 5 cards");
+        if (!PlayingHand.isValid(this.cards))
+            throw new IllegalArgumentException("Playing hand must contain 5 cards. ");
     }
 
     @Override
     public boolean addCard(Card c) {
-        if (this.size() < 5){
-            return super.addCard(c);
-        }
         return false;
     }
 }
