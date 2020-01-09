@@ -34,18 +34,14 @@ public class PlayingHandTest {
         return cards;
     }
 
-    protected PlayingHand getHand1() {
-        return new PlayingHand(getCards1());
-    }
-
-    protected PlayingHand getHand2() {
+    protected List<Card> getCards2() {
         List<Card> cards = new ArrayList<>();
         cards.add(new Card(CLUBS, FOUR));
         cards.add(new Card(DIAMONDS, FOUR));
         cards.add(new Card(HEARTS, FOUR));
         cards.add(new Card(SPADES, FOUR));
         cards.add(new Card(CLUBS, THREE));
-        return new PlayingHand(cards);
+        return cards;
     }
 
     @Test
@@ -65,14 +61,14 @@ public class PlayingHandTest {
 
     @Test
     public void profileTest() {
-        PlayingHand hand1 = getHand1();
         int[] profile = {8, 5, 0, 0, 0};
-        assertArrayEquals(profile, hand1.getProfile());
+        List<Card> cards = getCards1();
+        assertArrayEquals(profile, PlayingHand.getProfile(cards));
     }
 
     @Test
     public void bucketTest() {
-        PlayingHand hand1 = getHand2();
-        assertEquals(4, hand1.getBuckets().get(FOUR.ordinal()).size());
+        List<Card> cards = getCards2();
+        assertEquals(4, PlayingHand.getBuckets(cards).get(FOUR.ordinal()).size());
     }
 }
