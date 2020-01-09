@@ -1,10 +1,11 @@
 package com.yg2288.pokerodds;
 
+import static com.yg2288.pokerodds.Card.Rank.*;
+import static com.yg2288.pokerodds.Card.Suit.*;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -23,6 +24,30 @@ public class PlayingHandTest {
         return hand;
     }
 
+    protected List<Card> getCards1() {
+        List<Card> cards = new ArrayList<>();
+        cards.add(new Card(CLUBS, SEVEN));
+        cards.add(new Card(CLUBS, SIX));
+        cards.add(new Card(CLUBS, FIVE));
+        cards.add(new Card(CLUBS, FOUR));
+        cards.add(new Card(CLUBS, THREE));
+        return cards;
+    }
+
+    protected PlayingHand getHand1() {
+        return new PlayingHand(getCards1());
+    }
+
+    protected PlayingHand getHand2() {
+        List<Card> cards = new ArrayList<>();
+        cards.add(new Card(CLUBS, FOUR));
+        cards.add(new Card(DIAMONDS, FOUR));
+        cards.add(new Card(HEARTS, FOUR));
+        cards.add(new Card(SPADES, FOUR));
+        cards.add(new Card(CLUBS, THREE));
+        return new PlayingHand(cards);
+    }
+
     @Test
     public void playingHandTest1() {
         PlayingHand hand = randPlayingHand();
@@ -36,5 +61,18 @@ public class PlayingHandTest {
         PlayingHand hand = new PlayingHand(deck.draw(3));
         assertTrue(hand.addCard(deck.draw()));
         assertEquals(hand.size(), 4);
+    }
+
+    @Test
+    public void profileTest() {
+        PlayingHand hand1 = getHand1();
+        int[] profile = {8, 5, 0, 0, 0};
+        assertArrayEquals(profile, hand1.getProfile());
+    }
+
+    @Test
+    public void bucketTest() {
+        PlayingHand hand1 = getHand2();
+        assertEquals(4, hand1.getBuckets().get(FOUR.ordinal()).size());
     }
 }
