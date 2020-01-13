@@ -32,7 +32,7 @@ public class Straight extends PlayingHand implements Comparable<Straight> {
 
     public Straight(List<Card> cards) {
         super(cards);
-        if (!isValid(cards))
+        if (!isValid(this.cards))
             throw new IllegalArgumentException("Must be a straight. ");
         Collections.sort(this.cards, Collections.reverseOrder());
     }
