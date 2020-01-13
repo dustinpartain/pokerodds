@@ -9,7 +9,7 @@ public class StraightFlush extends PlayingHand implements Comparable<StraightFlu
     public static final HandEnum type = HandEnum.STRAIGHTFLUSH;
 
     public static boolean isStraightFlush(List<Card> cards) {
-        if (Flush.isFlush(cards) && Straight.isValid(cards))
+        if (Flush.isValid(cards) && Straight.isValid(cards))
             return true;
         return false;
     }

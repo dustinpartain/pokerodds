@@ -7,7 +7,7 @@ public class Flush extends PlayingHand implements Comparable<Flush> {
     public static final HandEnum type = HandEnum.FLUSH;
     private Card.Suit flushSuit;
 
-    public static boolean isFlush(List<Card> cards) {
+    public static boolean isValid(List<Card> cards) {
         if (cards.size() != 5)
             return false;
         return cards.stream().allMatch(c -> c.getSuit() == cards.get(0).getSuit());
@@ -15,7 +15,7 @@ public class Flush extends PlayingHand implements Comparable<Flush> {
 
     public Flush(List<Card> cards) {
         super(cards);
-        if (!isFlush(cards))
+        if (!isValid(this.cards))
             throw new IllegalArgumentException("Not a flush. ");
 
         Collections.sort(this.cards, Collections.reverseOrder());
