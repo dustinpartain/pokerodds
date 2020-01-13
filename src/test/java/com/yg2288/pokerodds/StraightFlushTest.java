@@ -8,6 +8,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.List;
+import java.util.Queue;
 
 public class StraightFlushTest {
     protected List<Card> getCards1() {
@@ -31,6 +32,26 @@ public class StraightFlushTest {
         cards.add(new Card(DIAMONDS, SEVEN));
         cards.add(new Card(DIAMONDS, SIX));
         cards.add(new Card(DIAMONDS, FIVE));
+        return new StraightFlush(cards);
+    }
+
+    protected StraightFlush getHand3() {
+        List<Card> cards = new ArrayList<>();
+        cards.add(new Card(DIAMONDS, ACE));
+        cards.add(new Card(DIAMONDS, TWO));
+        cards.add(new Card(DIAMONDS, THREE));
+        cards.add(new Card(DIAMONDS, FOUR));
+        cards.add(new Card(DIAMONDS, FIVE));
+        return new StraightFlush(cards);
+    }
+
+    protected StraightFlush getHand4() {
+        List<Card> cards = new ArrayList<>();
+        cards.add(new Card(DIAMONDS, ACE));
+        cards.add(new Card(DIAMONDS, KING));
+        cards.add(new Card(DIAMONDS, QUEEN));
+        cards.add(new Card(DIAMONDS, JACK));
+        cards.add(new Card(DIAMONDS, TEN));
         return new StraightFlush(cards);
     }
 
@@ -59,5 +80,17 @@ public class StraightFlushTest {
     public void straightFlushTest4() {
         StraightFlush hand1 = getHand1();
         assertEquals(0, hand1.compareTo(hand1));
+    }
+
+    @Test
+    public void highCardShouldBeFive() {
+        StraightFlush hand1 = getHand3();
+        assertEquals(FIVE, hand1.getStraightFlushRank());
+    }
+
+    @Test
+    public void highCardShouldBeAce() {
+        StraightFlush hand1 = getHand4();
+        assertEquals(ACE, hand1.getStraightFlushRank());
     }
 }
