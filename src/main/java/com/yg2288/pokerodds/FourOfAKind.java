@@ -9,16 +9,13 @@ import java.util.ArrayList;
 public class FourOfAKind extends PlayingHand implements Comparable<FourOfAKind> {
     public static final HandEnum type = HandEnum.FOUROFAKIND;
 
-    public static boolean isFourOfAKind(List<Card> cards) {
+    public static boolean isValid(List<Card> cards) {
         if (cards.size() != 5)
             return false;
-        int[] count = new int[13];
-        for (Card c : cards)
-            count[c.getRank().ordinal()]++;
-        for (int i : count)
-            if (i == 4)
-                return true;
-        return false;
+        int[] profile = {11, 1, 0, 0, 1};
+        if (!Arrays.equals(profile, PlayingHand.getProfile(cards)))
+            return false;
+        return true;
     }
 
     protected List<Card> quad;
@@ -26,23 +23,15 @@ public class FourOfAKind extends PlayingHand implements Comparable<FourOfAKind> 
 
     public FourOfAKind(List<Card> cards) {
         super(cards);
-        if (!isFourOfAKind(cards))
+        if (!isValid(this.cards))
             throw new IllegalArgumentException("Not four of a kind. ");
-        quad = findSame(this.cards, 4);
-        kicker = findSame(this.cards, 1).get(0);
-    }
-
-    protected List<Card> findSame(List<Card> cards, int count) {
-        List<List<Card>> l = new ArrayList<>();
-        for (int i=0; i<13; i++) {
-            l.add(new ArrayList<>());
+        List<List<Card>> bucket = PlayingHand.getBuckets(this.cards);
+        for (List<Card> l : bucket) {
+            if (l.size() == 1)
+                kicker = l.get(0);
+            if (l.size() == 4)
+                quad = l;
         }
-        for (Card c : cards)
-            l.get(c.getRank().ordinal()).add(c);
-        for (List<Card> c : l)
-            if (c.size() == count)
-                return c;
-        return null;
     }
 
     protected Rank getQuadRank() {
