@@ -7,7 +7,7 @@ import java.util.List;
 public class Straight extends PlayingHand implements Comparable<Straight> {
     public static final HandEnum type = HandEnum.STRAIGHT;
 
-    public static boolean isStraight(List<Card> cards) {
+    public static boolean isValid(List<Card> cards) {
         if (cards.size() != 5)
             return false;
         ArrayList<Card> c = new ArrayList<>(cards);
@@ -32,7 +32,7 @@ public class Straight extends PlayingHand implements Comparable<Straight> {
 
     public Straight(List<Card> cards) {
         super(cards);
-        if (!isStraight(cards))
+        if (!isValid(cards))
             throw new IllegalArgumentException("Must be a straight. ");
         Collections.sort(this.cards, Collections.reverseOrder());
     }
