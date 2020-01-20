@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class TwoPair extends PlayingHand implements Comparable<TwoPair> {
-    public static final HandEnum type = HandEnum.TWOPAIR;
 
     private List<Card> pair1;
     private List<Card> pair2;
@@ -39,6 +38,7 @@ public class TwoPair extends PlayingHand implements Comparable<TwoPair> {
             } else if (l.size() == 1)
                 kicker = l.get(0);
         }
+        setType(HandEnum.TWOPAIR);
     }
 
     protected Card.Rank getHighPairRank() {

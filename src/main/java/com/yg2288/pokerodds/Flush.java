@@ -4,7 +4,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class Flush extends PlayingHand implements Comparable<Flush> {
-    public static final HandEnum type = HandEnum.FLUSH;
     private Card.Suit flushSuit;
 
     public static boolean isValid(List<Card> cards) {
@@ -20,6 +19,7 @@ public class Flush extends PlayingHand implements Comparable<Flush> {
 
         Collections.sort(this.cards, Collections.reverseOrder());
         flushSuit = this.cards.get(0).getSuit();
+        setType(HandEnum.FLUSH);
     }
 
     public Card.Suit getFlushSuit() {

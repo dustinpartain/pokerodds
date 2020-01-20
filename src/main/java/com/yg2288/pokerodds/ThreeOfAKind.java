@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class ThreeOfAKind extends PlayingHand implements Comparable<ThreeOfAKind> {
-    public static final HandEnum type = HandEnum.THREEOFAKIND;
     private List<Card> triplet;
     private List<Card> rest;
 
@@ -32,6 +31,7 @@ public class ThreeOfAKind extends PlayingHand implements Comparable<ThreeOfAKind
                 rest.addAll(l);
         }
         Collections.sort(rest, Collections.reverseOrder());
+        setType(HandEnum.THREEOFAKIND);
     }
 
     public List<Card> getTriplet() {

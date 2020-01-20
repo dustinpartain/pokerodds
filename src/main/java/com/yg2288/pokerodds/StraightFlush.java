@@ -22,6 +22,7 @@ public class StraightFlush extends PlayingHand implements Comparable<StraightFlu
             throw new IllegalArgumentException("Not a straight flush. ");
         Collections.sort(this.cards, Collections.reverseOrder());
         highCard = getHighCard();
+        setType(HandEnum.STRAIGHTFLUSH);
     }
 
     public Card getHighCard() {

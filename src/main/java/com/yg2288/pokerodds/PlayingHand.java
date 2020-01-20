@@ -5,7 +5,7 @@ import java.util.List;
 
 public class PlayingHand extends Hand {
     protected HandEnum type;
-    
+
     public static boolean isValid(List<Card> cards) {
         if (cards.size() != 5)
             return false;

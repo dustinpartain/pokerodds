@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class FourOfAKind extends PlayingHand implements Comparable<FourOfAKind> {
-    public static final HandEnum type = HandEnum.FOUROFAKIND;
 
     public static boolean isValid(List<Card> cards) {
         if (cards.size() != 5)
@@ -32,6 +31,7 @@ public class FourOfAKind extends PlayingHand implements Comparable<FourOfAKind> 
             if (l.size() == 4)
                 quad = l;
         }
+        setType(HandEnum.FOUROFAKIND);
     }
 
     protected Rank getQuadRank() {

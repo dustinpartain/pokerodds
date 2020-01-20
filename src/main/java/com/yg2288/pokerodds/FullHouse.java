@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class FullHouse extends PlayingHand implements Comparable<FullHouse> {
-    public static final HandEnum type = HandEnum.FULLHOUSE;
 
     private List<Card> triplet;
     private List<Card> pair;
@@ -31,6 +30,7 @@ public class FullHouse extends PlayingHand implements Comparable<FullHouse> {
             if (l.size() == 2)
                 this.pair = l;
         }
+        setType(HandEnum.FULLHOUSE);
     }
 
     public Card.Rank getTripletRank() {

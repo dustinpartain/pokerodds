@@ -4,11 +4,11 @@ import java.util.Collections;
 import java.util.List;
 
 public class HighCard extends PlayingHand implements Comparable<HighCard> {
-    public static final HandEnum type = HandEnum.HIGHCARD;
 
     public HighCard(List<Card> cards) {
         super(cards);
         this.cards.sort(Collections.reverseOrder());
+        setType(HandEnum.HIGHCARD);
     }
 
     public Card highCard() {

@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class OnePair extends PlayingHand implements Comparable<OnePair> {
-    public static final HandEnum type = HandEnum.ONEPAIR;
 
     private List<Card> pair;
     private List<Card> rest;
@@ -31,6 +30,7 @@ public class OnePair extends PlayingHand implements Comparable<OnePair> {
             else if (l.size() == 1) rest.addAll(l);
         }
         Collections.sort(rest, Collections.reverseOrder());
+        setType(HandEnum.ONEPAIR);
     }
 
     protected Card.Rank getPairRank() {
