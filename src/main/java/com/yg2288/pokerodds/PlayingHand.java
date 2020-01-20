@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlayingHand extends Hand {
+    protected HandEnum type;
+    
     public static boolean isValid(List<Card> cards) {
         if (cards.size() != 5)
             return false;
@@ -33,10 +35,19 @@ public class PlayingHand extends Hand {
         super(cards);
         if (!PlayingHand.isValid(this.cards))
             throw new IllegalArgumentException("Playing hand must contain 5 cards. ");
+        setType(HandEnum.UNRANKED);
     }
 
     @Override
     public boolean addCard(Card c) {
         return false;
+    }
+
+    protected void setType(HandEnum type) {
+        this.type = type;
+    }
+
+    protected HandEnum getType() {
+        return type;
     }
 }
