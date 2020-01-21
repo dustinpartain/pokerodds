@@ -31,6 +31,14 @@ public class FactoryTest {
         return cards;
     }
 
+    protected List<Card> getCards3() {
+        List<Card> cards = new ArrayList<>();
+        cards.add(new Card(CLUBS, THREE));
+        cards.add(new Card(CLUBS, THREE));
+        cards.add(new Card(CLUBS, THREE));
+        return cards;
+    }
+
     @Test
     public void combinationTest1() {
         List<Card> cards = getCards1();
@@ -56,6 +64,14 @@ public class FactoryTest {
             assertEquals(r.get(i).get(0), l.get(i).get(0));
             assertEquals(r.get(i).get(1), l.get(i).get(1));
         }
+    }
+
+    @Test
+    public void combinationTest3() {
+        List<Card> cards = getCards3();
+        List<List<Card>> l = PlayingHandFactory.getCombinations(cards, 2);
+        assertEquals(1, l.size());
+        assertEquals(2, l.get(0).size());
     }
 }
 
