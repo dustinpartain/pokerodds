@@ -39,6 +39,18 @@ public class FactoryTest {
         return cards;
     }
 
+    protected List<Card> getCards4() {
+        List<Card> cards = new ArrayList<>();
+        cards.add(new Card(CLUBS, EIGHT));
+        cards.add(new Card(CLUBS, FIVE));
+        cards.add(new Card(DIAMONDS, EIGHT));
+        cards.add(new Card(DIAMONDS, FIVE));
+        cards.add(new Card(HEARTS, ACE));
+        cards.add(new Card(SPADES, FOUR));
+        cards.add(new Card(SPADES, THREE));
+        return cards;
+    }
+
     protected List<Card> getOnePairCards() {
         List<Card> cards = new ArrayList<>();
         cards.add(new Card(Card.Suit.SPADES, Card.Rank.ACE));
@@ -200,6 +212,25 @@ public class FactoryTest {
     public void handShouldBeStraightFlush() {
         List<Card> cards = getFullHouseCards();
         assertEquals(HandEnum.FULLHOUSE, PlayingHandFactory.findHand(cards).getType());
+    }
+
+    @Test
+    public void bestHandShouldBeStraightFlush() {
+        // Should be 9-high straight flush
+        List<Card> cards = getCards1();
+        PlayingHand hand = PlayingHandFactory.getBestHand(cards);
+        assertEquals(HandEnum.STRAIGHTFLUSH, hand.getType());
+        assertEquals(NINE, ((StraightFlush)hand).getStraightFlushRank());
+    }
+
+    @Test
+    public void bestHandShouldBeTwoPair() {
+        // should be 2 pair: 8 8 5 5 A
+        List<Card> cards = getCards4();
+        PlayingHand hand = PlayingHandFactory.getBestHand(cards);
+        assertEquals(HandEnum.TWOPAIR, hand.getType());
+        assertEquals(EIGHT, ((TwoPair) hand).getHighPairRank());
+        assertEquals(FIVE, ((TwoPair) hand).getLowPairRank());
     }
 }
 

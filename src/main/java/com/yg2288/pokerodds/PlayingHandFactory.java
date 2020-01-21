@@ -5,7 +5,12 @@ import java.util.List;
 
 public class PlayingHandFactory {
     public static PlayingHand getBestHand(List<Card> cards) {
-        return null;
+        List<List<Card>> l = getCombinations(cards, 5);
+        List<PlayingHand> hands = new ArrayList<>();
+        for (List<Card> c : l)
+            hands.add(PlayingHandFactory.findHand(c));
+        PlayingHand hand = hands.stream().max(new PlayingHandComparator()).get();
+        return hand;
     }
 
     public static List<List<Card>> getCombinations(List<Card> cards, int size) {
