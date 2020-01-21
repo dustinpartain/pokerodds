@@ -41,12 +41,16 @@ public class TwoPair extends PlayingHand implements Comparable<TwoPair> {
         setType(HandEnum.TWOPAIR);
     }
 
-    protected Card.Rank getHighPairRank() {
+    public Card.Rank getHighPairRank() {
         return pair1.get(0).getRank();
     }
 
-    protected Card.Rank getLowPairRank() {
+    public Card.Rank getLowPairRank() {
         return pair2.get(0).getRank();
+    }
+
+    public Card.Rank getKickerRank() {
+        return kicker.getRank();
     }
 
     @Override

@@ -55,6 +55,12 @@ public class TwoPairTest {
     }
 
     @Test
+    public void kickerShouldBeSeven() {
+        TwoPair hand = getHand1();
+        assertEquals(Rank.SEVEN, hand.getKickerRank());
+    }
+
+    @Test
     public void twoPairTest2() {
         TwoPair hand = getHand2();
         assertEquals(Rank.TWO, hand.getLowPairRank());
