@@ -33,7 +33,23 @@ public class PlayingHandFactory {
         }
     }
 
-    public static PlayingHand bestHand(List<Card> cards) {
-        return null;
+    public static PlayingHand findHand(List<Card> cards) {
+        if (StraightFlush.isValid(cards))
+            return new StraightFlush(cards);
+        if (FourOfAKind.isValid(cards))
+            return new FourOfAKind(cards);
+        if (FullHouse.isValid(cards))
+            return new FullHouse(cards);
+        if (Flush.isValid(cards))
+            return new Flush(cards);
+        if (Straight.isValid(cards))
+            return new Straight(cards);
+        if (ThreeOfAKind.isValid(cards))
+            return new ThreeOfAKind(cards);
+        if (TwoPair.isValid(cards))
+            return new TwoPair(cards);
+        if (OnePair.isValid(cards))
+            return new OnePair(cards);
+        return new HighCard(cards);
     }
 }

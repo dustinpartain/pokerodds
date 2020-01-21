@@ -39,6 +39,86 @@ public class FactoryTest {
         return cards;
     }
 
+    protected List<Card> getOnePairCards() {
+        List<Card> cards = new ArrayList<>();
+        cards.add(new Card(Card.Suit.SPADES, Card.Rank.ACE));
+        cards.add(new Card(Card.Suit.CLUBS, Card.Rank.ACE));
+        cards.add(new Card(Card.Suit.CLUBS, Card.Rank.TWO));
+        cards.add(new Card(Card.Suit.CLUBS, Card.Rank.THREE));
+        cards.add(new Card(Card.Suit.CLUBS, Card.Rank.FOUR));
+        return cards;
+    }
+
+    protected List<Card> getTwoPairCards() {
+        List<Card> cards = new ArrayList<>();
+        cards.add(new Card(Card.Suit.CLUBS, Card.Rank.ACE));
+        cards.add(new Card(Card.Suit.SPADES, Card.Rank.ACE));
+        cards.add(new Card(Card.Suit.CLUBS, Card.Rank.TWO));
+        cards.add(new Card(Card.Suit.SPADES, Card.Rank.TWO));
+        cards.add(new Card(Card.Suit.SPADES, Card.Rank.SEVEN));
+        return cards;
+    }
+
+    protected List<Card> getThreeOfAKindCards() {
+        List<Card> cards = new ArrayList<>();
+        cards.add(new Card(Card.Suit.CLUBS, Card.Rank.ACE));
+        cards.add(new Card(Card.Suit.DIAMONDS, Card.Rank.ACE));
+        cards.add(new Card(Card.Suit.HEARTS, Card.Rank.ACE));
+        cards.add(new Card(Card.Suit.CLUBS, Card.Rank.KING));
+        cards.add(new Card(Card.Suit.HEARTS, Card.Rank.FIVE));
+        return cards;
+    }
+
+    protected List<Card> getStraightCards() {
+        List<Card> cards = new ArrayList<>();
+        cards.add(new Card(Card.Suit.CLUBS, Card.Rank.ACE));
+        cards.add(new Card(Card.Suit.DIAMONDS, Card.Rank.TWO));
+        cards.add(new Card(Card.Suit.HEARTS, Card.Rank.THREE));
+        cards.add(new Card(Card.Suit.CLUBS, Card.Rank.FOUR));
+        cards.add(new Card(Card.Suit.HEARTS, Card.Rank.FIVE));
+        return cards;
+    }
+
+    protected List<Card> getFlushCards() {
+        List<Card> cards = new ArrayList<>();
+        cards.add(new Card(Card.Suit.CLUBS, Card.Rank.THREE));
+        cards.add(new Card(Card.Suit.CLUBS, Card.Rank.FIVE));
+        cards.add(new Card(Card.Suit.CLUBS, Card.Rank.SIX));
+        cards.add(new Card(Card.Suit.CLUBS, Card.Rank.SEVEN));
+        cards.add(new Card(Card.Suit.CLUBS, Card.Rank.EIGHT));
+        return cards;
+    }
+
+    protected List<Card> getFullHouseCards() {
+        List<Card> cards = new ArrayList<>();
+        cards.add(new Card(Card.Suit.CLUBS, Card.Rank.THREE));
+        cards.add(new Card(Card.Suit.DIAMONDS, Card.Rank.THREE));
+        cards.add(new Card(Card.Suit.HEARTS, Card.Rank.THREE));
+        cards.add(new Card(Card.Suit.SPADES, Card.Rank.TWO));
+        cards.add(new Card(Card.Suit.CLUBS, Card.Rank.TWO));
+        return cards;
+    }
+
+    protected List<Card> getFourOfAKindCards() {
+        List<Card> cards = new ArrayList<>();
+        cards.add(new Card(Card.Suit.CLUBS, Card.Rank.THREE));
+        cards.add(new Card(Card.Suit.DIAMONDS, Card.Rank.THREE));
+        cards.add(new Card(Card.Suit.HEARTS, Card.Rank.THREE));
+        cards.add(new Card(Card.Suit.SPADES, Card.Rank.THREE));
+        cards.add(new Card(Card.Suit.CLUBS, Card.Rank.TWO));
+        return cards;
+    }
+
+    protected List<Card> getStraightFlushCards() {
+        List<Card> cards = new ArrayList<>();
+        cards.add(new Card(CLUBS, SEVEN));
+        cards.add(new Card(CLUBS, SIX));
+        cards.add(new Card(CLUBS, FIVE));
+        cards.add(new Card(CLUBS, FOUR));
+        cards.add(new Card(CLUBS, THREE));
+        return cards;
+    }
+
     @Test
     public void combinationTest1() {
         List<Card> cards = getCards1();
@@ -72,6 +152,54 @@ public class FactoryTest {
         List<List<Card>> l = PlayingHandFactory.getCombinations(cards, 2);
         assertEquals(1, l.size());
         assertEquals(2, l.get(0).size());
+    }
+
+    @Test
+    public void handShouldBeOnePair() {
+        List<Card> cards = getOnePairCards();
+        assertEquals(HandEnum.ONEPAIR, PlayingHandFactory.findHand(cards).getType());
+    }
+
+    @Test
+    public void handShouldBeTwoPair() {
+        List<Card> cards = getTwoPairCards();
+        assertEquals(HandEnum.TWOPAIR, PlayingHandFactory.findHand(cards).getType());
+    }
+
+    @Test
+    public void handShouldBeThreeOfAKind() {
+        List<Card> cards = getThreeOfAKindCards();
+        assertEquals(HandEnum.THREEOFAKIND, PlayingHandFactory.findHand(cards).getType());
+    }
+
+    @Test
+    public void handShouldBeStraight() {
+        List<Card> cards = getStraightCards();
+        assertEquals(HandEnum.STRAIGHT, PlayingHandFactory.findHand(cards).getType());
+    }
+
+    @Test
+    public void handShouldBeFlush() {
+        List<Card> cards = getFlushCards();
+        assertEquals(HandEnum.FLUSH, PlayingHandFactory.findHand(cards).getType());
+    }
+
+    @Test
+    public void handShouldBeFullHouse() {
+        List<Card> cards = getFullHouseCards();
+        assertEquals(HandEnum.FULLHOUSE, PlayingHandFactory.findHand(cards).getType());
+    }
+
+    @Test
+    public void handShouldBeFourOfAKind() {
+        List<Card> cards = getFourOfAKindCards();
+        assertEquals(HandEnum.FOUROFAKIND, PlayingHandFactory.findHand(cards).getType());
+    }
+
+    @Test
+    public void handShouldBeStraightFlush() {
+        List<Card> cards = getFullHouseCards();
+        assertEquals(HandEnum.FULLHOUSE, PlayingHandFactory.findHand(cards).getType());
     }
 }
 
