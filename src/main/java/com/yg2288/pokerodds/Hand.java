@@ -39,4 +39,7 @@ public class Hand {
         return cards.get(i);
     }
 
+    public List<Card> getCards() {
+        return new ArrayList<>(cards);
+    }
 }

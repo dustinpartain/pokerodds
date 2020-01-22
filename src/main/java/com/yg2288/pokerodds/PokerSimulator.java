@@ -84,7 +84,7 @@ public class PokerSimulator {
     }
 
     public void simulate(int games) {
-        
+
     }
 
     protected StartingHand dealPlayerHand(StartingHand hand, Deck deck) {
