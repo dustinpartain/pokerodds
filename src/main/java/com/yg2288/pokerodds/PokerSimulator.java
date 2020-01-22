@@ -82,4 +82,16 @@ public class PokerSimulator {
     public int getHandStat(HandEnum type) {
         return playerHandStats.getOrDefault(type, 0);
     }
+
+    public void simulate(int games) {
+        
+    }
+
+    protected StartingHand dealPlayerHand(StartingHand hand, Deck deck) {
+        return null;
+    }
+
+    protected List<StartingHand> dealOpponentHands(List<StartingHand> hands, Deck deck) {
+        return null;
+    }
 }
