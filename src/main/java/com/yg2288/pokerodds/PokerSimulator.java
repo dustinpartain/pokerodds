@@ -1,5 +1,6 @@
 package com.yg2288.pokerodds;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -87,11 +88,21 @@ public class PokerSimulator {
 
     }
 
-    protected StartingHand dealPlayerHand(StartingHand hand, Deck deck) {
-        return null;
+    protected List<Card> dealPlayerHand(StartingHand hand, Deck deck) {
+        List<Card> c = hand.getCards();
+        while (c.size() < 2 && deck.size() > 0)
+            c.add(deck.draw());
+        return c;
     }
 
-    protected List<StartingHand> dealOpponentHands(List<StartingHand> hands, Deck deck) {
-        return null;
+    protected List<List<Card>> dealOpponentHands(List<StartingHand> hands, Deck deck) {
+        List<List<Card>> l = new ArrayList<>();
+        for (StartingHand hand : hands) {
+            List<Card> c = hand.getCards();
+            while (c.size() < 2 && deck.size() > 0)
+                c.add(deck.draw());
+            l.add(c);
+        }
+        return l;
     }
 }
