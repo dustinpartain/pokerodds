@@ -3,6 +3,8 @@ package com.yg2288.pokerodds;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class PokerSimulator {
     private StartingHand playerHand;
@@ -17,6 +19,7 @@ public class PokerSimulator {
         this.playerHand = playerHand;
         this.opponentHands = opponentHands;
         this.board = board;
+        playerHandStats = new HashMap<>();
     }
 
     public List<StartingHand> getOpponentHands() {
@@ -85,7 +88,29 @@ public class PokerSimulator {
     }
 
     public void simulate(int games) {
+        for (int i=0; i<games; i++)
+            simulateOneGame(playerHand, opponentHands, board);
+    }
 
+    public void simulateOneGame(StartingHand player, List<StartingHand> opponents, List<Card> board) {
+        Deck deck = new Deck();
+        deck.shuffle();
+        List<Card> playerCards = dealPlayerHand(player, deck);
+        List<List<Card>> opponentCards = dealOpponentHands(opponents, deck);
+        List<Card> boardCards = dealBoard(board, deck);
+        PlayingHand playerHand = PlayingHandFactory.getBestHand(Stream.concat(playerCards.stream(), boardCards.stream()).collect(Collectors.toList()));
+        List<PlayingHand> opponentHands = new ArrayList<>();
+        for (List<Card> c : opponentCards) {
+            PlayingHand hand = PlayingHandFactory.getBestHand(Stream.concat(c.stream(), boardCards.stream()).collect(Collectors.toList()));
+            opponentHands.add(hand);
+        }
+        // update player hand stats
+        playerHandStats.put(playerHand.getType(), playerHandStats.getOrDefault(playerHand.getType(), 0) + 1);
+        // update games played and wins
+        gamesPlayed++;
+        PlayingHandComparator handComparator = new PlayingHandComparator();
+        if (opponentHands.stream().allMatch(x -> handComparator.compare(playerHand, x) > 0))
+            gamesWon++;
     }
 
     protected List<Card> dealPlayerHand(StartingHand hand, Deck deck) {
@@ -104,5 +129,18 @@ public class PokerSimulator {
             l.add(c);
         }
         return l;
+    }
+
+    protected List<Card> dealBoard(List<Card> board, Deck deck) {
+        List<Card> l = new ArrayList<>(board);
+        while (l.size() < 5 && deck.size() > 0)
+            l.add(deck.draw());
+        return l;
+    }
+
+    public void printStats() {
+        System.out.println("Games played: " + getGamesPlayed());
+        System.out.println("Games won: " + getGamesWon());
+        System.out.println("Win percentage: %" + getWinPercentage()*100);
     }
 }
