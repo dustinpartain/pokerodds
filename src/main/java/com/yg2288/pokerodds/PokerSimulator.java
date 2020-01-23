@@ -142,5 +142,9 @@ public class PokerSimulator {
         System.out.println("Games played: " + getGamesPlayed());
         System.out.println("Games won: " + getGamesWon());
         System.out.println("Win percentage: %" + getWinPercentage()*100);
+        for (HandEnum handEnum : HandEnum.values()) {
+            if (handEnum == HandEnum.UNRANKED) continue;
+            System.out.println(String.format("Number of %s: %s", handEnum, playerHandStats.getOrDefault(handEnum, 0)));
+        }
     }
 }

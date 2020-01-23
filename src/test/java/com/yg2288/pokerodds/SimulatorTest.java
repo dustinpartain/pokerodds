@@ -42,7 +42,7 @@ public class SimulatorTest {
         PokerSimulator p = setupPlayers(1);
         p.simulate(1000);
         // One player vs one opponent, play from scratch - win percent should be close to .5
-        // System.out.println("Simulation games played / games won: " + p.getGamesPlayed() + " " + p.getGamesWon());
+        p.printStats();
         assertTrue(Math.abs(p.getWinPercentage() - 0.5) < 0.1);
     }
 }
