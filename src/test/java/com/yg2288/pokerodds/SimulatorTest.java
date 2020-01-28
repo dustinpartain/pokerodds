@@ -45,4 +45,19 @@ public class SimulatorTest {
         p.printStats();
         assertTrue(Math.abs(p.getWinPercentage() - 0.5) < 0.1);
     }
+
+    @Test
+    public void simulateGame3() {
+        StartingHand player = new StartingHand();
+        player.addCard(new Card(Card.Suit.SPADES, Card.Rank.ACE));
+        player.addCard(new Card(Card.Suit.CLUBS, Card.Rank.ACE));
+        List<StartingHand> opponents = new ArrayList<>();
+        opponents.add(new StartingHand());
+        opponents.add(new StartingHand());
+        List<Card> board = new ArrayList<>();
+        board.add(new Card(Card.Suit.DIAMONDS, Card.Rank.ACE));
+        PokerSimulator p = new PokerSimulator(player, opponents, board);
+        p.simulate(1000);
+        p.printStats();
+    }
 }

@@ -93,7 +93,12 @@ public class PokerSimulator {
     }
 
     public void simulateOneGame(StartingHand player, List<StartingHand> opponents, List<Card> board) {
-        Deck deck = new Deck();
+        List<Card> exclude = new ArrayList<>();
+        exclude.addAll(player.getCards());
+        exclude.addAll(board);
+        for (StartingHand o : opponents)
+            exclude.addAll(o.getCards());
+        Deck deck = new Deck(exclude);
         deck.shuffle();
         List<Card> playerCards = dealPlayerHand(player, deck);
         List<List<Card>> opponentCards = dealOpponentHands(opponents, deck);
