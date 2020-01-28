@@ -13,6 +13,9 @@ public class PokerSimulator {
 
     private int gamesPlayed;
     private int gamesWon;
+    private int offSuit;
+    private int suited;
+    private int pocketPair;
     private HashMap<HandEnum, Integer> playerHandStats;
 
     public PokerSimulator(StartingHand playerHand, List<StartingHand> opponentHands, List<Card> board) {
@@ -75,11 +78,23 @@ public class PokerSimulator {
         return gamesWon;
     }
 
+    public int getOffSuit() {
+        return offSuit;
+    }
+
+    public int getSuited() {
+        return suited;
+    }
+
+    public int getPocketPair() {
+        return pocketPair;
+    }
+
     public float getWinPercentage() {
         return (float)gamesWon / gamesPlayed;
     }
 
-    public HashMap<HandEnum, Integer> getHandStats() {
+    protected HashMap<HandEnum, Integer> getHandStats() {
         return playerHandStats;
     }
 
@@ -93,6 +108,7 @@ public class PokerSimulator {
     }
 
     public void simulateOneGame(StartingHand player, List<StartingHand> opponents, List<Card> board) {
+        // Build deck excluding existing cards
         List<Card> exclude = new ArrayList<>();
         exclude.addAll(player.getCards());
         exclude.addAll(board);
@@ -100,9 +116,15 @@ public class PokerSimulator {
             exclude.addAll(o.getCards());
         Deck deck = new Deck(exclude);
         deck.shuffle();
-        List<Card> playerCards = dealPlayerHand(player, deck);
-        List<List<Card>> opponentCards = dealOpponentHands(opponents, deck);
+        // Deal cards to all players and the board
+        StartingHand dPlayerHand = dealPlayerHand(player, deck);
+        List<StartingHand> dOpponentHands = dealOpponentHands(opponents, deck);
+        List<Card> playerCards = dPlayerHand.getCards();
+        List<List<Card>> opponentCards = new ArrayList<>();
+        for (StartingHand o : dOpponentHands)
+            opponentCards.add(o.getCards());
         List<Card> boardCards = dealBoard(board, deck);
+        // Get the best hand for each player
         PlayingHand playerHand = PlayingHandFactory.getBestHand(Stream.concat(playerCards.stream(), boardCards.stream()).collect(Collectors.toList()));
         List<PlayingHand> opponentHands = new ArrayList<>();
         for (List<Card> c : opponentCards) {
@@ -111,6 +133,13 @@ public class PokerSimulator {
         }
         // update player hand stats
         playerHandStats.put(playerHand.getType(), playerHandStats.getOrDefault(playerHand.getType(), 0) + 1);
+        if (dPlayerHand.isOffSuit()) {
+            offSuit++;
+            if (dPlayerHand.isPocketPair())
+                pocketPair++;
+        } else {
+            suited++;
+        }
         // update games played and wins
         gamesPlayed++;
         PlayingHandComparator handComparator = new PlayingHandComparator();
@@ -118,20 +147,20 @@ public class PokerSimulator {
             gamesWon++;
     }
 
-    protected List<Card> dealPlayerHand(StartingHand hand, Deck deck) {
-        List<Card> c = hand.getCards();
-        while (c.size() < 2 && deck.size() > 0)
-            c.add(deck.draw());
-        return c;
+    protected StartingHand dealPlayerHand(StartingHand hand, Deck deck) {
+        StartingHand playerHand = new StartingHand(hand.getCards());
+        while (playerHand.size() < 2 && deck.size() > 0)
+            playerHand.addCard(deck.draw());
+        return playerHand;
     }
 
-    protected List<List<Card>> dealOpponentHands(List<StartingHand> hands, Deck deck) {
-        List<List<Card>> l = new ArrayList<>();
+    protected List<StartingHand> dealOpponentHands(List<StartingHand> hands, Deck deck) {
+        List<StartingHand> l = new ArrayList<>();
         for (StartingHand hand : hands) {
-            List<Card> c = hand.getCards();
-            while (c.size() < 2 && deck.size() > 0)
-                c.add(deck.draw());
-            l.add(c);
+            StartingHand opponentHand = new StartingHand(hand.getCards());
+            while (opponentHand.size() < 2 && deck.size() > 0)
+                opponentHand.addCard(deck.draw());
+            l.add(opponentHand);
         }
         return l;
     }
@@ -147,6 +176,8 @@ public class PokerSimulator {
         System.out.println("Games played: " + getGamesPlayed());
         System.out.println("Games won: " + getGamesWon());
         System.out.println("Win percentage: %" + getWinPercentage()*100);
+        System.out.println("Number of suited starting hands: " + suited);
+        System.out.println("Number of pocket pairs: " + pocketPair);
         for (HandEnum handEnum : HandEnum.values()) {
             if (handEnum == HandEnum.UNRANKED) continue;
             System.out.println(String.format("Number of %s: %s", handEnum, playerHandStats.getOrDefault(handEnum, 0)));

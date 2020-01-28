@@ -21,8 +21,12 @@ public class SimulatorTest {
     public void dealPlayerHand1() {
         PokerSimulator p = setupPlayers(3);
         Deck deck = new Deck();
-        List<Card> playerCards = p.dealPlayerHand(p.getPlayerHand(), deck);
-        List<List<Card>> opponentCards = p.dealOpponentHands(p.getOpponentHands(), deck);
+        StartingHand dPlayerHand = p.dealPlayerHand(p.getPlayerHand(), deck);
+        List<StartingHand> dOpponentHands = p.dealOpponentHands(p.getOpponentHands(), deck);
+        List<Card> playerCards = dPlayerHand.getCards();
+        List<List<Card>> opponentCards = new ArrayList<>();
+        for (StartingHand o : dOpponentHands)
+            opponentCards.add(o.getCards());
         assertEquals(2, playerCards.size());
         assertEquals(3, opponentCards.size());
         for (List<Card> c : opponentCards)
@@ -43,6 +47,7 @@ public class SimulatorTest {
         p.simulate(1000);
         // One player vs one opponent, play from scratch - win percent should be close to .5
         p.printStats();
+        System.out.println();
         assertTrue(Math.abs(p.getWinPercentage() - 0.5) < 0.1);
     }
 
@@ -59,5 +64,10 @@ public class SimulatorTest {
         PokerSimulator p = new PokerSimulator(player, opponents, board);
         p.simulate(1000);
         p.printStats();
+        System.out.println();
+        // At minimum we have three of a kind
+        assertEquals(0, p.getHandStat(HandEnum.HIGHCARD));
+        assertEquals(0, p.getHandStat(HandEnum.ONEPAIR));
+        assertEquals(0, p.getHandStat(HandEnum.TWOPAIR));
     }
 }
