@@ -16,13 +16,23 @@ public class PokerSimulator {
     private int offSuit;
     private int suited;
     private int pocketPair;
-    private HashMap<HandEnum, Integer> playerHandStats;
+    private HashMap<HandEnum, Integer> playerHandStats = new HashMap<>();
 
     public PokerSimulator(StartingHand playerHand, List<StartingHand> opponentHands, List<Card> board) {
         this.playerHand = playerHand;
         this.opponentHands = opponentHands;
         this.board = board;
-        playerHandStats = new HashMap<>();
+    }
+
+    public PokerSimulator(StartingHand playerHand, int opponents, List<Card> board) {
+        if (opponents > 7)
+            throw new IllegalArgumentException("Number of opponents cannot be greater than 7. ");
+        List<StartingHand> opponentHands = new ArrayList<>();
+        for (int i=0; i<opponents; i++)
+            opponentHands.add(new StartingHand());
+        this.playerHand = playerHand;
+        this.opponentHands = opponentHands;
+        this.board = board;
     }
 
     public List<StartingHand> getOpponentHands() {

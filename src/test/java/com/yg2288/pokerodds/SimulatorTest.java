@@ -17,6 +17,13 @@ public class SimulatorTest {
         return p;
     }
 
+    protected StartingHand getPocketAces() {
+        StartingHand hand = new StartingHand();
+        hand.addCard(new Card(Card.Suit.SPADES, Card.Rank.ACE));
+        hand.addCard(new Card(Card.Suit.CLUBS, Card.Rank.ACE));
+        return hand;
+    }
+
     @Test
     public void dealPlayerHand1() {
         PokerSimulator p = setupPlayers(3);
@@ -53,9 +60,7 @@ public class SimulatorTest {
 
     @Test
     public void simulateGame3() {
-        StartingHand player = new StartingHand();
-        player.addCard(new Card(Card.Suit.SPADES, Card.Rank.ACE));
-        player.addCard(new Card(Card.Suit.CLUBS, Card.Rank.ACE));
+        StartingHand player = getPocketAces();
         List<StartingHand> opponents = new ArrayList<>();
         opponents.add(new StartingHand());
         opponents.add(new StartingHand());
@@ -69,5 +74,14 @@ public class SimulatorTest {
         assertEquals(0, p.getHandStat(HandEnum.HIGHCARD));
         assertEquals(0, p.getHandStat(HandEnum.ONEPAIR));
         assertEquals(0, p.getHandStat(HandEnum.TWOPAIR));
+    }
+
+    @Test
+    public void simulateCreateDefaultOpponents() {
+        StartingHand player = getPocketAces();
+        List<Card> board = new ArrayList<>();
+        board.add(new Card(Card.Suit.DIAMONDS, Card.Rank.ACE));
+        PokerSimulator p = new PokerSimulator(player, 2, board);
+        assertEquals(2, p.getOpponentHands().size());
     }
 }
