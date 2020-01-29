@@ -1,6 +1,8 @@
 package com.yg2288.pokerodds;
 
 import static org.junit.Assert.*;
+import static com.yg2288.pokerodds.Card.Rank.*;
+import static com.yg2288.pokerodds.Card.Suit.*;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -74,6 +76,20 @@ public class SimulatorTest {
         assertEquals(0, p.getHandStat(HandEnum.HIGHCARD));
         assertEquals(0, p.getHandStat(HandEnum.ONEPAIR));
         assertEquals(0, p.getHandStat(HandEnum.TWOPAIR));
+    }
+
+    @Test
+    public void simulateGame4() {
+        StartingHand hand = new StartingHand();
+        hand.addCard(new Card(SPADES, ACE));
+        hand.addCard(new Card(CLUBS, ACE));
+        List<Card> board = new ArrayList<>();
+        board.add(new Card(DIAMONDS, KING));
+        board.add(new Card(CLUBS, KING));
+        board.add(new Card(HEARTS, TEN));
+        PokerSimulator p = new PokerSimulator(hand, 1, board);
+        p.simulate(1000);
+        p.printStats();
     }
 
     @Test
