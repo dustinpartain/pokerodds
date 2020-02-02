@@ -3,6 +3,9 @@ package com.yg2288.pokerodds;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.atomic.LongAdder;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -11,12 +14,14 @@ public class PokerSimulator {
     private List<StartingHand> opponentHands;
     private List<Card> board;
 
-    private int gamesPlayed;
-    private int gamesWon;
-    private int offSuit;
-    private int suited;
-    private int pocketPair;
-    private HashMap<HandEnum, Integer> playerHandStats = new HashMap<>();
+//    private int gamesPlayed;
+//    private int gamesWon;
+//    private int offSuit;
+//    private int suited;
+//    private int pocketPair;
+    //private HashMap<HandEnum, Integer> playerHandStats = new HashMap<>();
+    private ConcurrentHashMap<HandEnum, LongAdder> playerHandStats = new ConcurrentHashMap<>();
+    private ConcurrentHashMap<String, LongAdder> playerHandCounts = new ConcurrentHashMap<>();
 
     public PokerSimulator(StartingHand playerHand, List<StartingHand> opponentHands, List<Card> board) {
         this.playerHand = playerHand;
@@ -76,45 +81,60 @@ public class PokerSimulator {
     }
 
     public void resetStats() {
-        gamesPlayed = gamesWon = 0;
+        // gamesPlayed = gamesWon = 0;
         playerHandStats.clear();
+        playerHandCounts.clear();
     }
 
     public int getGamesPlayed() {
-        return gamesPlayed;
+//        return gamesPlayed;
+        return playerHandCounts.computeIfAbsent("gamesPlayed", k -> new LongAdder()).intValue();
     }
 
     public int getGamesWon() {
-        return gamesWon;
+//        return gamesWon;
+        return playerHandCounts.computeIfAbsent("gamesWon", k -> new LongAdder()).intValue();
     }
 
     public int getOffSuit() {
-        return offSuit;
+//        return offSuit;
+        return playerHandCounts.computeIfAbsent("offSuit", k -> new LongAdder()).intValue();
     }
 
     public int getSuited() {
-        return suited;
+//        return suited;
+        return playerHandCounts.computeIfAbsent("suited", k -> new LongAdder()).intValue();
     }
 
     public int getPocketPair() {
-        return pocketPair;
+//        return pocketPair;
+        return playerHandCounts.computeIfAbsent("pocketPair", k -> new LongAdder()).intValue();
     }
 
     public float getWinPercentage() {
+//        return (float)gamesWon / gamesPlayed;
+        int gamesPlayed = getGamesPlayed();
+        int gamesWon = getGamesWon();
+        if (gamesPlayed == 0)
+            return 0;
         return (float)gamesWon / gamesPlayed;
     }
 
-    protected HashMap<HandEnum, Integer> getHandStats() {
+    protected ConcurrentHashMap<HandEnum, LongAdder> getHandStats() {
         return playerHandStats;
     }
 
     public int getHandStat(HandEnum type) {
-        return playerHandStats.getOrDefault(type, 0);
+        return playerHandStats.computeIfAbsent(type, k -> new LongAdder()).intValue();
     }
 
     public void simulate(int games) {
-        for (int i=0; i<games; i++)
-            simulateOneGame(playerHand, opponentHands, board);
+//        for (int i=0; i<games; i++)
+//            simulateOneGame(playerHand, opponentHands, board);
+        ForkJoinPool commonPool = ForkJoinPool.commonPool();
+        RecursiveSimulator task = new RecursiveSimulator(games, playerHand, opponentHands, board, playerHandCounts, playerHandStats);
+        commonPool.execute(task);
+        task.join();
     }
 
     public void simulateOneGame(StartingHand player, List<StartingHand> opponents, List<Card> board) {
@@ -142,7 +162,7 @@ public class PokerSimulator {
             opponentHands.add(hand);
         }
         // update player hand stats
-        playerHandStats.put(playerHand.getType(), playerHandStats.getOrDefault(playerHand.getType(), 0) + 1);
+/*        playerHandStats.put(playerHand.getType(), playerHandStats.getOrDefault(playerHand.getType(), 0) + 1);
         if (dPlayerHand.isOffSuit()) {
             offSuit++;
             if (dPlayerHand.isPocketPair())
@@ -154,7 +174,7 @@ public class PokerSimulator {
         gamesPlayed++;
         PlayingHandComparator handComparator = new PlayingHandComparator();
         if (opponentHands.stream().allMatch(x -> handComparator.compare(playerHand, x) > 0))
-            gamesWon++;
+            gamesWon++;*/
     }
 
     protected StartingHand dealPlayerHand(StartingHand hand, Deck deck) {
@@ -186,11 +206,13 @@ public class PokerSimulator {
         System.out.println("Games played: " + getGamesPlayed());
         System.out.println("Games won: " + getGamesWon());
         System.out.println("Win percentage: %" + getWinPercentage()*100);
-        System.out.println("Number of suited starting hands: " + suited);
-        System.out.println("Number of pocket pairs: " + pocketPair);
+//        System.out.println("Number of suited starting hands: " + suited);
+//        System.out.println("Number of pocket pairs: " + pocketPair);
+        System.out.println("Number of suited starting hands: " + getSuited());
+        System.out.println("Number of pocket pairs: " + getPocketPair());
         for (HandEnum handEnum : HandEnum.values()) {
             if (handEnum == HandEnum.UNRANKED) continue;
-            System.out.println(String.format("Number of %s: %s", handEnum, playerHandStats.getOrDefault(handEnum, 0)));
+            System.out.println(String.format("Number of %s: %s", handEnum, getHandStat(handEnum)));
         }
     }
 }
