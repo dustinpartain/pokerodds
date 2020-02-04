@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class SimulatorTest {
     protected PokerSimulator setupPlayers(int n) {
@@ -30,8 +31,10 @@ public class SimulatorTest {
     public void dealPlayerHand1() {
         PokerSimulator p = setupPlayers(3);
         Deck deck = new Deck();
-        StartingHand dPlayerHand = p.dealPlayerHand(p.getPlayerHand(), deck);
-        List<StartingHand> dOpponentHands = p.dealOpponentHands(p.getOpponentHands(), deck);
+        RecursiveSimulator r = new RecursiveSimulator(1, p.getPlayerHand(), p.getOpponentHands(),
+                new ArrayList<>(), new ConcurrentHashMap<>(), new ConcurrentHashMap<>());
+        StartingHand dPlayerHand = r.dealPlayerHand(p.getPlayerHand(), deck);
+        List<StartingHand> dOpponentHands = r.dealOpponentHands(p.getOpponentHands(), deck);
         List<Card> playerCards = dPlayerHand.getCards();
         List<List<Card>> opponentCards = new ArrayList<>();
         for (StartingHand o : dOpponentHands)
@@ -99,5 +102,14 @@ public class SimulatorTest {
         board.add(new Card(Card.Suit.DIAMONDS, Card.Rank.ACE));
         PokerSimulator p = new PokerSimulator(player, 2, board);
         assertEquals(2, p.getOpponentHands().size());
+    }
+
+    @Test
+    public void resetStatsTest1() {
+        PokerSimulator p = new PokerSimulator(new StartingHand(), 3, new ArrayList<>());
+        p.simulate(1);
+        assertEquals(1, p.getGamesPlayed());
+        p.resetStats();
+        assertEquals(0, p.getGamesPlayed());
     }
 }
