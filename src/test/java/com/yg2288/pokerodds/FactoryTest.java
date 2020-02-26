@@ -53,71 +53,71 @@ public class FactoryTest {
 
     protected List<Card> getOnePairCards() {
         List<Card> cards = new ArrayList<>();
-        cards.add(new Card(Card.Suit.SPADES, Card.Rank.ACE));
-        cards.add(new Card(Card.Suit.CLUBS, Card.Rank.ACE));
-        cards.add(new Card(Card.Suit.CLUBS, Card.Rank.TWO));
-        cards.add(new Card(Card.Suit.CLUBS, Card.Rank.THREE));
-        cards.add(new Card(Card.Suit.CLUBS, Card.Rank.FOUR));
+        cards.add(new Card(SPADES, ACE));
+        cards.add(new Card(CLUBS, ACE));
+        cards.add(new Card(CLUBS, TWO));
+        cards.add(new Card(CLUBS, THREE));
+        cards.add(new Card(CLUBS, FOUR));
         return cards;
     }
 
     protected List<Card> getTwoPairCards() {
         List<Card> cards = new ArrayList<>();
-        cards.add(new Card(Card.Suit.CLUBS, Card.Rank.ACE));
-        cards.add(new Card(Card.Suit.SPADES, Card.Rank.ACE));
-        cards.add(new Card(Card.Suit.CLUBS, Card.Rank.TWO));
-        cards.add(new Card(Card.Suit.SPADES, Card.Rank.TWO));
-        cards.add(new Card(Card.Suit.SPADES, Card.Rank.SEVEN));
+        cards.add(new Card(CLUBS, ACE));
+        cards.add(new Card(SPADES, ACE));
+        cards.add(new Card(CLUBS, TWO));
+        cards.add(new Card(SPADES, TWO));
+        cards.add(new Card(SPADES, SEVEN));
         return cards;
     }
 
     protected List<Card> getThreeOfAKindCards() {
         List<Card> cards = new ArrayList<>();
-        cards.add(new Card(Card.Suit.CLUBS, Card.Rank.ACE));
-        cards.add(new Card(Card.Suit.DIAMONDS, Card.Rank.ACE));
-        cards.add(new Card(Card.Suit.HEARTS, Card.Rank.ACE));
-        cards.add(new Card(Card.Suit.CLUBS, Card.Rank.KING));
-        cards.add(new Card(Card.Suit.HEARTS, Card.Rank.FIVE));
+        cards.add(new Card(CLUBS, ACE));
+        cards.add(new Card(DIAMONDS, ACE));
+        cards.add(new Card(HEARTS, ACE));
+        cards.add(new Card(CLUBS, KING));
+        cards.add(new Card(HEARTS, FIVE));
         return cards;
     }
 
     protected List<Card> getStraightCards() {
         List<Card> cards = new ArrayList<>();
-        cards.add(new Card(Card.Suit.CLUBS, Card.Rank.ACE));
-        cards.add(new Card(Card.Suit.DIAMONDS, Card.Rank.TWO));
-        cards.add(new Card(Card.Suit.HEARTS, Card.Rank.THREE));
-        cards.add(new Card(Card.Suit.CLUBS, Card.Rank.FOUR));
-        cards.add(new Card(Card.Suit.HEARTS, Card.Rank.FIVE));
+        cards.add(new Card(CLUBS, ACE));
+        cards.add(new Card(DIAMONDS, TWO));
+        cards.add(new Card(HEARTS, THREE));
+        cards.add(new Card(CLUBS, FOUR));
+        cards.add(new Card(HEARTS, FIVE));
         return cards;
     }
 
     protected List<Card> getFlushCards() {
         List<Card> cards = new ArrayList<>();
-        cards.add(new Card(Card.Suit.CLUBS, Card.Rank.THREE));
-        cards.add(new Card(Card.Suit.CLUBS, Card.Rank.FIVE));
-        cards.add(new Card(Card.Suit.CLUBS, Card.Rank.SIX));
-        cards.add(new Card(Card.Suit.CLUBS, Card.Rank.SEVEN));
-        cards.add(new Card(Card.Suit.CLUBS, Card.Rank.EIGHT));
+        cards.add(new Card(CLUBS, THREE));
+        cards.add(new Card(CLUBS, FIVE));
+        cards.add(new Card(CLUBS, SIX));
+        cards.add(new Card(CLUBS, SEVEN));
+        cards.add(new Card(CLUBS, EIGHT));
         return cards;
     }
 
     protected List<Card> getFullHouseCards() {
         List<Card> cards = new ArrayList<>();
-        cards.add(new Card(Card.Suit.CLUBS, Card.Rank.THREE));
-        cards.add(new Card(Card.Suit.DIAMONDS, Card.Rank.THREE));
-        cards.add(new Card(Card.Suit.HEARTS, Card.Rank.THREE));
-        cards.add(new Card(Card.Suit.SPADES, Card.Rank.TWO));
-        cards.add(new Card(Card.Suit.CLUBS, Card.Rank.TWO));
+        cards.add(new Card(CLUBS, THREE));
+        cards.add(new Card(DIAMONDS, THREE));
+        cards.add(new Card(HEARTS, THREE));
+        cards.add(new Card(SPADES, TWO));
+        cards.add(new Card(CLUBS, TWO));
         return cards;
     }
 
     protected List<Card> getFourOfAKindCards() {
         List<Card> cards = new ArrayList<>();
-        cards.add(new Card(Card.Suit.CLUBS, Card.Rank.THREE));
-        cards.add(new Card(Card.Suit.DIAMONDS, Card.Rank.THREE));
-        cards.add(new Card(Card.Suit.HEARTS, Card.Rank.THREE));
-        cards.add(new Card(Card.Suit.SPADES, Card.Rank.THREE));
-        cards.add(new Card(Card.Suit.CLUBS, Card.Rank.TWO));
+        cards.add(new Card(CLUBS, THREE));
+        cards.add(new Card(DIAMONDS, THREE));
+        cards.add(new Card(HEARTS, THREE));
+        cards.add(new Card(SPADES, THREE));
+        cards.add(new Card(CLUBS, TWO));
         return cards;
     }
 
