@@ -10,13 +10,13 @@ import java.util.List;
 
 public class DeckTest {
     @Test
-    public void deckTest1() {
+    public void newDeckSizeShouldBe52() {
         Deck deck = new Deck();
-        Assert.assertTrue(deck.size() == 52);
+        Assert.assertEquals(52, deck.size());
     }
 
     @Test
-    public void deckTest2() {
+    public void excludeCardTest() {
         List<Card> excludeCards = new ArrayList<>();
         Card excluded1 = new Card(Card.Suit.CLUBS, Card.Rank.ACE);
         Card excluded2 = new Card(Card.Suit.DIAMONDS, Card.Rank.EIGHT);
@@ -28,30 +28,30 @@ public class DeckTest {
     }
 
     @Test
-    public void deckTest3() {
+    public void clearDeckTest() {
         Deck deck = new Deck();
         deck.clear();
-        Assert.assertEquals(deck.size(), 0);
+        Assert.assertEquals(0, deck.size());
     }
 
     @Test
-    public void deckTest4() {
+    public void cardInDeckTest() {
         Deck deck = new Deck();
         Card card = deck.draw();
         Assert.assertTrue(!deck.inDeck(card));
     }
 
     @Test
-    public void deckTest5() {
+    public void drawNCardsTest() {
         Deck deck = new Deck();
         List<Card> l = deck.draw(10);
-        Assert.assertEquals(l.size(), 10);
+        Assert.assertEquals(10, l.size());
     }
 
     @Test
-    public void deckTest6() {
+    public void overDrawDeckTest() {
         Deck deck = new Deck();
         List<Card> l = deck.draw(100);
-        Assert.assertEquals(l.size(), 52);
+        Assert.assertEquals(52, l.size());
     }
 }
