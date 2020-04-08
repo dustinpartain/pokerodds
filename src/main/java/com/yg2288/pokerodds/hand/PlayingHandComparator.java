@@ -1,4 +1,4 @@
-package com.yg2288.pokerodds;
+package com.yg2288.pokerodds.hand;
 
 import java.util.Comparator;
 

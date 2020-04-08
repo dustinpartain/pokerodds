@@ -1,9 +1,11 @@
-package com.yg2288.pokerodds;
+package com.yg2288.pokerodds.hand;
+
+import com.yg2288.pokerodds.deck.Card;
 
 import java.util.Collections;
 import java.util.List;
 
-import static com.yg2288.pokerodds.Card.*;
+import static com.yg2288.pokerodds.deck.Card.*;
 
 public class StraightFlush extends PlayingHand implements Comparable<StraightFlush> {
     public static final HandEnum type = HandEnum.STRAIGHTFLUSH;

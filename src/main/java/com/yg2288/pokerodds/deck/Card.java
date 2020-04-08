@@ -1,4 +1,4 @@
-package com.yg2288.pokerodds;
+package com.yg2288.pokerodds.deck;
 
 public class Card implements Comparable<Card>, Cloneable {
     public enum Suit {

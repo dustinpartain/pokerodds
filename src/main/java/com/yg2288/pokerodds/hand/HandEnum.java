@@ -1,6 +1,6 @@
-package com.yg2288.pokerodds;
+package com.yg2288.pokerodds.hand;
 
-enum HandEnum {
+public enum HandEnum {
     UNRANKED,
     HIGHCARD,
     ONEPAIR,

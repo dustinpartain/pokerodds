@@ -1,10 +1,11 @@
-package com.yg2288.pokerodds;
+package com.yg2288.pokerodds.hand;
 
-import static com.yg2288.pokerodds.Card.*;
+import com.yg2288.pokerodds.deck.Card;
+
+import static com.yg2288.pokerodds.deck.Card.*;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.ArrayList;
 
 public class FourOfAKind extends PlayingHand implements Comparable<FourOfAKind> {
 
@@ -34,11 +35,11 @@ public class FourOfAKind extends PlayingHand implements Comparable<FourOfAKind> 
         setType(HandEnum.FOUROFAKIND);
     }
 
-    protected Rank getQuadRank() {
+    public Rank getQuadRank() {
         return quad.get(0).getRank();
     }
 
-    protected Rank getKickerRank() {
+    public Rank getKickerRank() {
         return kicker.getRank();
     }
 

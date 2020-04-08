@@ -1,4 +1,6 @@
-package com.yg2288.pokerodds;
+package com.yg2288.pokerodds.hand;
+
+import com.yg2288.pokerodds.deck.Card;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,7 +40,7 @@ public class ThreeOfAKind extends PlayingHand implements Comparable<ThreeOfAKind
         return triplet;
     }
 
-    protected Card.Rank getTripletRank() {
+    public Card.Rank getTripletRank() {
         return triplet.get(0).getRank();
     }
 

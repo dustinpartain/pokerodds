@@ -1,14 +1,15 @@
 package com.yg2288.pokerodds;
 
-import static com.yg2288.pokerodds.Card.Rank.*;
-import static com.yg2288.pokerodds.Card.Suit.*;
+import static com.yg2288.pokerodds.deck.Card.Rank.*;
+import static com.yg2288.pokerodds.deck.Card.Suit.*;
 import static org.junit.Assert.*;
+
+import com.yg2288.pokerodds.deck.Card;
+import com.yg2288.pokerodds.hand.StraightFlush;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.List;
-import java.util.Queue;
 
 public class StraightFlushTest {
     protected List<Card> getCards1() {

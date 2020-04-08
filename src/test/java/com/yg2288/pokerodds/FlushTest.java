@@ -1,12 +1,15 @@
 package com.yg2288.pokerodds;
 
 import static org.junit.Assert.*;
+
+import com.yg2288.pokerodds.deck.Card;
+import com.yg2288.pokerodds.hand.Flush;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.yg2288.pokerodds.Card.*;
+import static com.yg2288.pokerodds.deck.Card.*;
 
 public class FlushTest {
     protected List<Card> getCards1() {

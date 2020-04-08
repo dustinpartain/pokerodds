@@ -1,4 +1,4 @@
-package com.yg2288.pokerodds;
+package com.yg2288.pokerodds.deck;
 
 import java.util.ArrayList;
 import java.util.Collections;

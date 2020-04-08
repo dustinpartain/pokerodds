@@ -1,4 +1,6 @@
-package com.yg2288.pokerodds;
+package com.yg2288.pokerodds.hand;
+
+import com.yg2288.pokerodds.deck.Card;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +14,7 @@ public class PlayingHand extends Hand {
         return true;
     }
 
-    protected static int[] getProfile(List<Card> cards) {
+    public static int[] getProfile(List<Card> cards) {
         int[] count = new int[13];
         for (Card c : cards)
             count[c.getRank().ordinal()]++;
@@ -22,7 +24,7 @@ public class PlayingHand extends Hand {
         return profile;
     }
 
-    protected static List<List<Card>> getBuckets(List<Card> cards) {
+    public static List<List<Card>> getBuckets(List<Card> cards) {
         List<List<Card>> buckets = new ArrayList<>();
         for (int i=0; i<13; i++)
             buckets.add(new ArrayList<>());
@@ -47,7 +49,7 @@ public class PlayingHand extends Hand {
         this.type = type;
     }
 
-    protected HandEnum getType() {
+    public HandEnum getType() {
         return type;
     }
 }

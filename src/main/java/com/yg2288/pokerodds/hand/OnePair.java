@@ -1,4 +1,6 @@
-package com.yg2288.pokerodds;
+package com.yg2288.pokerodds.hand;
+
+import com.yg2288.pokerodds.deck.Card;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,7 +35,7 @@ public class OnePair extends PlayingHand implements Comparable<OnePair> {
         setType(HandEnum.ONEPAIR);
     }
 
-    protected Card.Rank getPairRank() {
+    public Card.Rank getPairRank() {
         return pair.get(0).getRank();
     }
 

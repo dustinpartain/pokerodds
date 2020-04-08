@@ -1,5 +1,7 @@
 package com.yg2288.pokerodds;
 
+import com.yg2288.pokerodds.deck.Card;
+import com.yg2288.pokerodds.deck.Deck;
 import org.junit.Assert;
 import org.junit.Test;
 

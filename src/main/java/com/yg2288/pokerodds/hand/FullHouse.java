@@ -1,7 +1,7 @@
-package com.yg2288.pokerodds;
+package com.yg2288.pokerodds.hand;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+import com.yg2288.pokerodds.deck.Card;
+
 import java.util.Arrays;
 import java.util.List;
 

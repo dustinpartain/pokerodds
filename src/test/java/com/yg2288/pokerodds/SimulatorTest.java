@@ -1,8 +1,13 @@
 package com.yg2288.pokerodds;
 
 import static org.junit.Assert.*;
-import static com.yg2288.pokerodds.Card.Rank.*;
-import static com.yg2288.pokerodds.Card.Suit.*;
+import static com.yg2288.pokerodds.deck.Card.Rank.*;
+import static com.yg2288.pokerodds.deck.Card.Suit.*;
+
+import com.yg2288.pokerodds.deck.Card;
+import com.yg2288.pokerodds.deck.Deck;
+import com.yg2288.pokerodds.hand.HandEnum;
+import com.yg2288.pokerodds.hand.StartingHand;
 import org.junit.Test;
 
 import java.util.ArrayList;
