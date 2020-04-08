@@ -5,7 +5,7 @@ import static com.yg2288.pokerodds.deck.Card.Suit.*;
 import static org.junit.Assert.*;
 
 import com.yg2288.pokerodds.deck.Card;
-import com.yg2288.pokerodds.hand.StraightFlush;
+import com.yg2288.pokerodds.hand.types.StraightFlush;
 import org.junit.Test;
 
 import java.util.ArrayList;

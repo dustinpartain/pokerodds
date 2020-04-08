@@ -7,6 +7,7 @@ import static org.junit.Assert.*;
 import com.yg2288.pokerodds.deck.Card;
 import com.yg2288.pokerodds.deck.Deck;
 import com.yg2288.pokerodds.hand.*;
+import com.yg2288.pokerodds.hand.types.*;
 import org.junit.Test;
 
 import java.util.ArrayList;

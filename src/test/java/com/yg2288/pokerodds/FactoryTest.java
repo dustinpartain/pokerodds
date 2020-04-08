@@ -6,6 +6,8 @@ import static org.junit.Assert.*;
 
 import com.yg2288.pokerodds.deck.Card;
 import com.yg2288.pokerodds.hand.*;
+import com.yg2288.pokerodds.hand.types.StraightFlush;
+import com.yg2288.pokerodds.hand.types.TwoPair;
 import org.junit.Test;
 
 import java.util.ArrayList;

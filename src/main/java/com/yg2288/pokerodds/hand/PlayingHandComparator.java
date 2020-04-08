@@ -1,5 +1,7 @@
 package com.yg2288.pokerodds.hand;
 
+import com.yg2288.pokerodds.hand.types.*;
+
 import java.util.Comparator;
 
 public class PlayingHandComparator implements Comparator<PlayingHand> {

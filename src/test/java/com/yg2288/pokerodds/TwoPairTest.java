@@ -3,7 +3,7 @@ package com.yg2288.pokerodds;
 import static org.junit.Assert.*;
 
 import com.yg2288.pokerodds.deck.Card;
-import com.yg2288.pokerodds.hand.TwoPair;
+import com.yg2288.pokerodds.hand.types.TwoPair;
 import org.junit.Test;
 
 import java.util.ArrayList;

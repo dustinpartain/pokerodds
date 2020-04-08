@@ -1,6 +1,8 @@
-package com.yg2288.pokerodds.hand;
+package com.yg2288.pokerodds.hand.types;
 
 import com.yg2288.pokerodds.deck.Card;
+import com.yg2288.pokerodds.hand.HandEnum;
+import com.yg2288.pokerodds.hand.PlayingHand;
 
 import java.util.Arrays;
 import java.util.List;
